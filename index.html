@@ -1,31 +1,1107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba Genesys Web Messaging</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eir Airlines | Vuela mejor</title>
+  <meta name="description" content="Sitio de prueba para eir Airlines: búsqueda de vuelos, destinos, ofertas y soporte con Genesys Web Messaging." />
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --surface: rgba(255, 255, 255, 0.86);
+      --surface-solid: #ffffff;
+      --text: #0f172a;
+      --muted: #5b6477;
+      --line: rgba(15, 23, 42, 0.08);
+      --primary: #5a36ff;
+      --primary-2: #8d7bff;
+      --accent: #ffb703;
+      --success: #19a974;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --max: 1180px;
+    }
 
-    <script type="text/javascript" charset="utf-8">
-      (function (g, e, n, es, ys) {
-        g['_genesysJs'] = e;
-        g[e] = g[e] || function () {
-          (g[e].q = g[e].q || []).push(arguments)
-        };
-        g[e].t = 1 * new Date();
-        g[e].c = es;
-        ys = document.createElement('script');
-        ys.async = 1;
-        ys.src = n;
-        ys.charset = 'utf-8';
-        document.head.appendChild(ys);
-      })(window, 'Genesys', 'https://apps.euw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
-        environment: 'prod-euw2',
-        deploymentId: '2b307430-db1c-424c-8eba-2fec5e2a82db'
-      });
-    </script>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(90,54,255,0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,183,3,0.13), transparent 24%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select { font: inherit; }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, #20115a, #4b2cff 60%, #7c68ff);
+      color: white;
+      font-size: 0.92rem;
+      padding: 10px 0;
+    }
+
+    .topbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar strong { color: #ffe69c; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .logo-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(90,54,255,0.18);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      flex: 0 0 auto;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text { min-width: 0; }
+    .brand-text .name {
+      display: block;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .brand-text .tag {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: #1f2a44;
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .nav-links a { opacity: 0.85; }
+    .nav-links a:hover { opacity: 1; color: var(--primary); }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+      text-wrap: nowrap;
+    }
+
+    .cta:hover { transform: translateY(-1px); }
+    .cta-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #7b5cff);
+      box-shadow: 0 12px 24px rgba(90,54,255,0.24);
+    }
+    .cta-secondary {
+      color: var(--primary);
+      background: #eef1ff;
+    }
+    .cta-ghost {
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .hero {
+      padding: 38px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 22px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(90,54,255,0.08);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.93rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .lead {
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.65;
+      margin: 18px 0 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(15,23,42,0.06);
+      border-radius: 20px;
+      padding: 16px 16px 15px;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.32rem;
+      margin-bottom: 4px;
+    }
+    .stat span { color: var(--muted); font-size: 0.93rem; }
+
+    .booking-card {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .booking-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(141,123,255,0.22), transparent 30%);
+      pointer-events: none;
+    }
+
+    .booking-inner {
+      position: relative;
+      padding: 22px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .booking-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .booking-header h2 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .booking-header p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.96rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(25,169,116,0.11);
+      color: #0a7d56;
+      font-weight: 700;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      border: 1px solid rgba(15,23,42,0.12);
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px 14px;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: rgba(90,54,255,0.48);
+      box-shadow: 0 0 0 4px rgba(90,54,255,0.12);
+    }
+
+    .booking-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .hero-visual {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .plane-card, .side-card, .feature-card, .destination-card, .deal-card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.07);
+    }
+
+    .plane-card {
+      min-height: 350px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,0.85), transparent 22%),
+        linear-gradient(145deg, rgba(90,54,255,0.16), rgba(255,183,3,0.14)),
+        linear-gradient(180deg, #ffffff, #edf0ff);
+    }
+
+    .plane-card .content {
+      position: relative;
+      height: 100%;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .mini-kpi {
+      display: grid;
+      gap: 6px;
+      max-width: 220px;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .mini-kpi strong { font-size: 1.8rem; }
+    .mini-kpi span { color: var(--muted); }
+
+    .skyline {
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 54%;
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.9));
+    }
+
+    .wing {
+      position: absolute;
+      left: 8%;
+      top: 34%;
+      width: 84%;
+      height: 160px;
+      border-radius: 90px;
+      transform: rotate(-6deg);
+      background: linear-gradient(90deg, rgba(90,54,255,0.95), rgba(141,123,255,0.95));
+      box-shadow: 0 24px 50px rgba(90,54,255,0.25);
+      clip-path: polygon(0 55%, 52% 0, 100% 38%, 70% 45%, 81% 100%, 55% 70%, 37% 82%, 42% 43%);
+      opacity: 0.9;
+    }
+
+    .fuselage {
+      position: absolute;
+      left: 18%;
+      top: 40%;
+      width: 56%;
+      height: 56px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffffff, #dbe3ff);
+      box-shadow: inset 0 0 0 1px rgba(15,23,42,0.06), 0 14px 30px rgba(15,23,42,0.1);
+      transform: rotate(-6deg);
+    }
+
+    .fuselage::before {
+      content: "eir";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 1.1rem;
+    }
+
+    .window-row {
+      position: absolute;
+      left: 27%;
+      top: 40.8%;
+      width: 34%;
+      height: 10px;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 8px;
+      transform: rotate(-6deg);
+      opacity: 0.85;
+    }
+
+    .window-row span {
+      border-radius: 999px;
+      background: rgba(90,54,255,0.35);
+      height: 10px;
+    }
+
+    .route-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 999px;
+      padding: 10px 14px;
+      width: fit-content;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+      border: 1px solid rgba(15,23,42,0.06);
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .section {
+      padding: 20px 0 8px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 0 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 58ch;
+      line-height: 1.6;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 22px;
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(90,54,255,0.14), rgba(255,183,3,0.16));
+      color: var(--primary);
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .feature-card h3,
+    .destination-card h3,
+    .deal-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .feature-card p,
+    .destination-card p,
+    .deal-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .destination-card {
+      overflow: hidden;
+    }
+
+    .destination-media {
+      min-height: 160px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.34)),
+        radial-gradient(circle at top, rgba(255,255,255,0.22), transparent 45%),
+        linear-gradient(135deg, #cbd5ff, #dff5ff);
+      position: relative;
+    }
+
+    .destination-media.tall { background: linear-gradient(135deg, #c7d2fe, #e9f3ff); }
+    .destination-media.city2 { background: linear-gradient(135deg, #dfe7ff, #fff0d9); }
+    .destination-media.city3 { background: linear-gradient(135deg, #d7fff0, #d0ddff); }
+    .destination-media.city4 { background: linear-gradient(135deg, #fce7f3, #e0e7ff); }
+
+    .destination-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.86);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #1e293b;
+    }
+
+    .destination-body, .deal-body {
+      padding: 18px;
+    }
+
+    .price {
+      display: inline-flex;
+      gap: 6px;
+      align-items: baseline;
+      margin-top: 12px;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .price span {
+      color: var(--primary);
+      font-size: 1.35rem;
+    }
+
+    .deals {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 16px;
+    }
+
+    .deal-card {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .deal-banner {
+      min-height: 210px;
+      background:
+        linear-gradient(90deg, rgba(90,54,255,0.96), rgba(124,104,255,0.92)),
+        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80') center/cover;
+      color: white;
+      padding: 24px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .deal-banner h3 { margin-bottom: 8px; font-size: 1.5rem; }
+    .deal-banner p { margin: 0; color: rgba(255,255,255,0.9); max-width: 42ch; }
+
+    .deal-list {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .deal-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(238,241,255,0.75);
+      border: 1px solid rgba(90,54,255,0.08);
+    }
+
+    .deal-item strong { display: block; margin-bottom: 4px; }
+    .deal-item span { color: var(--muted); font-size: 0.92rem; }
+    .deal-item .amount {
+      color: var(--primary);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .footer-cta {
+      margin: 26px 0 44px;
+      background: linear-gradient(135deg, #1e1b4b, #4b2cff 55%, #8d7bff);
+      color: white;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-cta .wrap {
+      padding: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-cta h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    }
+
+    .footer-cta p { margin: 0; color: rgba(255,255,255,0.9); max-width: 58ch; }
+
+    footer {
+      padding: 0 0 34px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 18px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(15,23,42,0.08);
+    }
+
+    .footer-grid h4 { margin: 0 0 10px; color: var(--text); }
+    .footer-grid ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+
+    .small {
+      margin-top: 18px;
+      font-size: 0.86rem;
+    }
+
+    .note {
+      margin-top: 12px;
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .deals {
+        grid-template-columns: 1fr;
+      }
+      .grid-3,
+      .destinations,
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-wrap: wrap;
+        padding: 14px 0;
+      }
+      .nav-links {
+        display: none;
+      }
+      .stats,
+      .form-grid,
+      .grid-3,
+      .destinations,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding-top: 22px;
+      }
+      h1 { line-height: 1; }
+      .booking-inner,
+      .plane-card .content,
+      .feature-card,
+      .destination-body,
+      .deal-banner,
+      .deal-list,
+      .footer-cta .wrap {
+        padding: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Página de prueba</h1>
-    <p>Si el deployment está correctamente configurado, el widget de Genesys aparecerá en la esquina inferior derecha.</p>
+  <div class="topbar">
+    <div class="container">
+      <div>Oferta especial de lanzamiento: <strong>hasta 30% off</strong> en rutas seleccionadas.</div>
+      <div>Atención 24/7 con Messenger de Genesys</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="eir Airlines">
+        <div class="logo-box">
+          <!-- Reemplaza 'logo.png' por el nombre real del archivo del logo que subas a tu repo -->
+          <img src="logo.png" alt="Logo de eir Airlines" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-weight:900;color:#5a36ff;letter-spacing:.04em&quot;>eir</span>'" />
+        </div>
+        <div class="brand-text">
+          <span class="name">eir Airlines</span>
+          <span class="tag">Vuela mejor, llega más lejos</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#vuelos">Vuelos</a>
+        <a href="#destinos">Destinos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#experiencia">Experiencia</a>
+      </nav>
+
+      <a class="cta cta-secondary" href="#vuelos">Buscar vuelos</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">✈︎ Nueva experiencia digital de eir</div>
+          <h1>Tu próxima aventura empieza aquí.</h1>
+          <p class="lead">
+            Reserva vuelos nacionales e internacionales con una interfaz clara, rápida y pensada para convertir.
+            Esta página de prueba simula la presencia de una aerolínea premium con reservas, destinos destacados y soporte en tiempo real.
+          </p>
+          <div class="hero-actions">
+            <a class="cta cta-primary" href="#vuelos">Reservar ahora</a>
+            <a class="cta cta-ghost" href="#destinos">Explorar destinos</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>120+</strong>
+              <span>rutas activas</span>
+            </div>
+            <div class="stat">
+              <strong>24/7</strong>
+              <span>atención al pasajero</span>
+            </div>
+            <div class="stat">
+              <strong>4.9/5</strong>
+              <span>valoración promedio</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual" aria-label="Resumen visual del vuelo">
+          <div class="plane-card">
+            <div class="content">
+              <div>
+                <div class="route-chip">MAD → BCN · vuelo directo</div>
+              </div>
+              <div class="mini-kpi">
+                <strong>€59</strong>
+                <span>desde por trayecto</span>
+              </div>
+            </div>
+            <div class="wing"></div>
+            <div class="fuselage"></div>
+            <div class="window-row">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="skyline"></div>
+          </div>
+
+          <div class="side-card" style="padding:18px; display:grid; gap:10px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+              <div>
+                <strong style="display:block; font-size:1rem;">Check-in inteligente</strong>
+                <span style="color:var(--muted); font-size:.93rem;">Documentos, asientos y equipaje</span>
+              </div>
+              <span class="pill">Disponible</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+              <div style="padding:12px; border-radius:16px; background:#f4f7ff; text-align:center;">
+                <strong>45m</strong><br /><span style="color:var(--muted); font-size:.86rem;">antes</span>
+              </div>
+              <div style="padding:12px; border-radius:16px; background:#f4f7ff; text-align:center;">
+                <strong>1 PC</strong><br /><span style="color:var(--muted); font-size:.86rem;">equipaje</span>
+              </div>
+              <div style="padding:12px; border-radius:16px; background:#f4f7ff; text-align:center;">
+                <strong>Seat+</strong><br /><span style="color:var(--muted); font-size:.86rem;">asiento</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="vuelos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Reserva tu vuelo</h2>
+            <p>Formulario de prueba con estilo de aerolínea. Puedes adaptarlo después a tu backend o integrarlo con tu motor de reservas.</p>
+          </div>
+        </div>
+
+        <div class="booking-card">
+          <div class="booking-inner">
+            <div class="booking-header">
+              <div>
+                <h2>Encuentra las mejores tarifas de eir</h2>
+                <p>Selecciona origen, destino y fechas para simular una búsqueda de vuelos.</p>
+              </div>
+              <div class="pill">Mejor precio garantizado</div>
+            </div>
+
+            <form class="form-grid" onsubmit="event.preventDefault(); alert('Búsqueda de prueba enviada. Conecta este formulario a tu backend cuando quieras.');">
+              <div class="field">
+                <label for="from">Origen</label>
+                <input id="from" type="text" placeholder="Madrid (MAD)" value="Madrid (MAD)" />
+              </div>
+              <div class="field">
+                <label for="to">Destino</label>
+                <input id="to" type="text" placeholder="Barcelona (BCN)" value="Barcelona (BCN)" />
+              </div>
+              <div class="field">
+                <label for="depart">Salida</label>
+                <input id="depart" type="date" />
+              </div>
+              <div class="field">
+                <label for="return">Regreso</label>
+                <input id="return" type="date" />
+              </div>
+              <div class="field">
+                <label for="passengers">Pasajeros</label>
+                <select id="passengers">
+                  <option>1 pasajero</option>
+                  <option>2 pasajeros</option>
+                  <option>3 pasajeros</option>
+                  <option>4 pasajeros</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="class">Clase</label>
+                <select id="class">
+                  <option>Economy</option>
+                  <option>Premium Economy</option>
+                  <option>Business</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="promo">Código promocional</label>
+                <input id="promo" type="text" placeholder="EIRWELCOME" />
+              </div>
+              <div class="field full">
+                <div class="booking-actions">
+                  <button class="cta cta-primary" type="submit">Buscar vuelos</button>
+                  <a class="cta cta-ghost" href="#ofertas">Ver ofertas</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiencia">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Una experiencia premium</h2>
+            <p>Bloques pensados para una home de aerolínea moderna: servicio, puntualidad y asistencia digital.</p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="feature-card">
+            <div class="icon">∞</div>
+            <h3>Conectividad total</h3>
+            <p>Mensajería, soporte y seguimiento integrados para ayudar a tus pasajeros antes, durante y después del vuelo.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">⏱</div>
+            <h3>Reservas rápidas</h3>
+            <p>Interfaz ágil con una jerarquía visual clara para aumentar conversión en búsquedas y reservas.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">✦</div>
+            <h3>Marca memorable</h3>
+            <p>Diseño limpio, detalles premium y una paleta inspirada en el logo para reforzar identidad visual.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="destinos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Destinos destacados</h2>
+            <p>Ideas de destinos para mostrar rutas populares o campañas de temporada.</p>
+          </div>
+        </div>
+
+        <div class="destinations">
+          <article class="destination-card">
+            <div class="destination-media tall">
+              <div class="destination-badge">Europa</div>
+            </div>
+            <div class="destination-body">
+              <h3>Londres</h3>
+              <p>Escapadas urbanas, conexiones de negocio y cultura todo el año.</p>
+              <div class="price">Desde <span>€79</span></div>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-media city2">
+              <div class="destination-badge">City break</div>
+            </div>
+            <div class="destination-body">
+              <h3>París</h3>
+              <p>La escapada ideal para fines de semana y experiencias premium.</p>
+              <div class="price">Desde <span>€69</span></div>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-media city3">
+              <div class="destination-badge">Playa</div>
+            </div>
+            <div class="destination-body">
+              <h3>Lisboa</h3>
+              <p>Vistas, gastronomía y una conexión corta para cualquier plan.</p>
+              <div class="price">Desde <span>€49</span></div>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-media city4">
+              <div class="destination-badge">Norte</div>
+            </div>
+            <div class="destination-body">
+              <h3>Dublín</h3>
+              <p>Ruta inspirada en el nombre eir, perfecta para brand storytelling.</p>
+              <div class="price">Desde <span>€89</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ofertas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Ofertas de temporada</h2>
+            <p>Combina descuentos, mensajes de marketing y urgencia visual para una landing más realista.</p>
+          </div>
+        </div>
+
+        <div class="deals">
+          <article class="deal-card">
+            <div class="deal-banner">
+              <div>
+                <h3>Semana eir: hasta -30%</h3>
+                <p>Promoción especial en vuelos seleccionados con equipaje incluido y cambios flexibles.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="deal-card">
+            <div class="deal-list">
+              <div class="deal-item">
+                <div>
+                  <strong>Tarifa Light</strong>
+                  <span>Ideal para escapadas cortas</span>
+                </div>
+                <div class="amount">€39</div>
+              </div>
+              <div class="deal-item">
+                <div>
+                  <strong>Tarifa Flex</strong>
+                  <span>Mayor flexibilidad de cambios</span>
+                </div>
+                <div class="amount">€69</div>
+              </div>
+              <div class="deal-item">
+                <div>
+                  <strong>Business Select</strong>
+                  <span>Embarque prioritario y lounge</span>
+                </div>
+                <div class="amount">€129</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-cta">
+      <div class="container wrap">
+        <div>
+          <h2>¿Necesitas ayuda con la reserva?</h2>
+          <p>El widget de Genesys aparecerá en la esquina inferior derecha para probar soporte, mensajes o automatizaciones.</p>
+        </div>
+        <a class="cta cta-primary" href="#inicio">Volver arriba</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>eir Airlines</h4>
+        <p>Demo de landing page para pruebas internas, con estética de aerolínea y el deployment de Genesys integrado.</p>
+        <p class="note">Importante: coloca el logo en el mismo directorio que este archivo y nómbralo <strong>logo.png</strong>, o cambia la ruta en el HTML.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li>Reserva de vuelos</li>
+          <li>Check-in online</li>
+          <li>Equipaje y extras</li>
+          <li>Atención al pasajero</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>Soporte 24/7</li>
+          <li>Centro de ayuda</li>
+          <li>Estado de vuelos</li>
+          <li>Ofertas y promociones</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container small">
+      © 2026 eir Airlines. Página de prueba.
+    </div>
+  </footer>
+
+  <script type="text/javascript" charset="utf-8">
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments)
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script');
+      ys.async = 1;
+      ys.src = n;
+      ys.charset = 'utf-8';
+      document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.euw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod-euw2',
+      deploymentId: '2b307430-db1c-424c-8eba-2fec5e2a82db'
+    });
+
+    // Fechas por defecto para el formulario
+    const depart = document.getElementById('depart');
+    const ret = document.getElementById('return');
+    const today = new Date();
+    const plus = (days) => {
+      const d = new Date(today);
+      d.setDate(d.getDate() + days);
+      return d.toISOString().split('T')[0];
+    };
+    depart.value = plus(7);
+    ret.value = plus(14);
+  </script>
 </body>
 </html>
