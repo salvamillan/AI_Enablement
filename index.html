@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eir Airlines | Fly better</title>
-  <meta name="description" content="Test website for eir Airlines: flight search, destinations, offers, and support with Genesys Web Messaging." />
+  <title>eir | Fibre Broadband Help & Support</title>
+  <meta name="description" content="eir Fibre Broadband Help & Support page with troubleshooting, modem support, WiFi help, speed guidance, and Genesys Messenger integration." />
   <style>
     :root {
-      --bg: #f6f8fc;
-      --surface: rgba(255, 255, 255, 0.86);
-      --surface-solid: #ffffff;
-      --text: #0f172a;
-      --muted: #5b6477;
-      --line: rgba(15, 23, 42, 0.08);
-      --primary: #5a36ff;
-      --primary-2: #8d7bff;
-      --accent: #ffb703;
-      --success: #19a974;
-      --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+      --bg: #f5f7f2;
+      --surface: #ffffff;
+      --surface-soft: #f8faf7;
+      --text: #17261b;
+      --muted: #5d6c61;
+      --line: rgba(23, 38, 27, 0.10);
+      --brand: #5cb85c;
+      --brand-dark: #2f7d32;
+      --brand-soft: #e8f5e9;
+      --accent: #ff8f45;
+      --shadow: 0 16px 38px rgba(23, 38, 27, 0.10);
       --radius: 24px;
       --radius-sm: 16px;
       --max: 1180px;
@@ -30,15 +30,14 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(90,54,255,0.14), transparent 28%),
-        radial-gradient(circle at top right, rgba(255,183,3,0.13), transparent 24%),
+        radial-gradient(circle at top left, rgba(92,184,92,0.10), transparent 26%),
         linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
       min-height: 100vh;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
     button, input, select { font: inherit; }
+    img { max-width: 100%; display: block; }
 
     .container {
       width: min(100% - 32px, var(--max));
@@ -46,8 +45,8 @@
     }
 
     .topbar {
-      background: linear-gradient(90deg, #20115a, #4b2cff 60%, #7c68ff);
-      color: white;
+      background: linear-gradient(90deg, #10351b, #2c6f31 55%, #5cb85c);
+      color: #fff;
       font-size: 0.92rem;
       padding: 10px 0;
     }
@@ -60,43 +59,43 @@
       flex-wrap: wrap;
     }
 
-    .topbar strong { color: #ffe69c; }
+    .topbar strong { color: #f8ffd9; }
 
     header {
       position: sticky;
       top: 0;
       z-index: 30;
+      background: rgba(255,255,255,0.88);
       backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.72);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      border-bottom: 1px solid rgba(23, 38, 27, 0.08);
     }
 
     .nav {
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      min-height: 76px;
+      gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       min-width: 0;
     }
 
     .logo-box {
-      width: 52px;
-      height: 52px;
+      width: 54px;
+      height: 54px;
       border-radius: 16px;
       background: #fff;
-      box-shadow: 0 10px 26px rgba(90,54,255,0.18);
+      border: 1px solid rgba(23,38,27,0.10);
+      box-shadow: 0 10px 26px rgba(23,38,27,0.08);
       display: grid;
       place-items: center;
       overflow: hidden;
       flex: 0 0 auto;
-      border: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     .logo-box img {
@@ -105,14 +104,15 @@
       object-fit: cover;
     }
 
-    .brand-text { min-width: 0; }
     .brand-text .name {
       display: block;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-weight: 900;
       line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+      font-size: 1.1rem;
     }
+
     .brand-text .tag {
       display: block;
       color: var(--muted);
@@ -123,15 +123,15 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
-      color: #1f2a44;
-      font-weight: 600;
+      color: #26402b;
+      font-weight: 700;
       font-size: 0.96rem;
     }
 
-    .nav-links a { opacity: 0.85; }
-    .nav-links a:hover { opacity: 1; color: var(--primary); }
+    .nav-links a { opacity: 0.88; }
+    .nav-links a:hover { opacity: 1; color: var(--brand-dark); }
 
     .cta {
       display: inline-flex;
@@ -141,21 +141,22 @@
       border: 0;
       border-radius: 999px;
       padding: 13px 18px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-      text-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .cta:hover { transform: translateY(-1px); }
     .cta-primary {
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #7b5cff);
-      box-shadow: 0 12px 24px rgba(90,54,255,0.24);
+      background: linear-gradient(135deg, var(--brand-dark), var(--brand));
+      box-shadow: 0 12px 24px rgba(47,125,50,0.22);
     }
     .cta-secondary {
-      color: var(--primary);
-      background: #eef1ff;
+      color: var(--brand-dark);
+      background: #ecf8ec;
+      border: 1px solid rgba(92,184,92,0.15);
     }
     .cta-ghost {
       color: var(--text);
@@ -163,19 +164,43 @@
       border: 1px solid var(--line);
     }
 
+    .breadcrumbs {
+      padding: 18px 0 0;
+      color: #6a786e;
+      font-size: 0.93rem;
+    }
+
+    .breadcrumbs .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .crumb + .crumb::before {
+      content: "›";
+      color: #a0aba3;
+    }
+
     .hero {
-      padding: 38px 0 28px;
+      padding: 18px 0 14px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 24px;
       align-items: stretch;
     }
 
     .hero-copy {
-      padding: 22px 0;
+      padding: 20px 0;
     }
 
     .eyebrow {
@@ -184,33 +209,33 @@
       gap: 10px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(90,54,255,0.08);
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.93rem;
-      margin-bottom: 18px;
+      background: rgba(92,184,92,0.12);
+      color: var(--brand-dark);
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.5rem, 5vw, 5rem);
-      line-height: 0.95;
+      font-size: clamp(2.3rem, 4.4vw, 4.5rem);
+      line-height: 0.96;
       letter-spacing: -0.05em;
     }
 
     .lead {
-      max-width: 58ch;
+      max-width: 60ch;
       color: var(--muted);
-      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      font-size: clamp(1rem, 1.45vw, 1.12rem);
       line-height: 1.65;
-      margin: 18px 0 24px;
+      margin: 16px 0 24px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .stats {
@@ -220,58 +245,61 @@
     }
 
     .stat {
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(15,23,42,0.06);
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(23,38,27,0.08);
       border-radius: 20px;
-      padding: 16px 16px 15px;
-      box-shadow: 0 12px 30px rgba(15,23,42,0.06);
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(23,38,27,0.05);
     }
 
     .stat strong {
       display: block;
-      font-size: 1.32rem;
+      font-size: 1.3rem;
       margin-bottom: 4px;
     }
-    .stat span { color: var(--muted); font-size: 0.93rem; }
+    .stat span { color: var(--muted); font-size: 0.92rem; }
 
-    .booking-card {
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(15,23,42,0.08);
+    .support-card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(23,38,27,0.08);
       border-radius: 30px;
       box-shadow: var(--shadow);
       overflow: hidden;
       position: relative;
     }
 
-    .booking-card::before {
+    .support-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(141,123,255,0.22), transparent 30%);
+      background:
+        radial-gradient(circle at top right, rgba(92,184,92,0.16), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(255,143,69,0.12), transparent 24%);
       pointer-events: none;
     }
 
-    .booking-inner {
+    .support-inner {
       position: relative;
       padding: 22px;
       display: grid;
       gap: 16px;
     }
 
-    .booking-header {
+    .support-head {
       display: flex;
       align-items: start;
       justify-content: space-between;
       gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .booking-header h2 {
+    .support-head h2 {
       margin: 0;
       font-size: 1.35rem;
       letter-spacing: -0.03em;
     }
 
-    .booking-header p {
+    .support-head p {
       margin: 6px 0 0;
       color: var(--muted);
       line-height: 1.5;
@@ -284,214 +312,107 @@
       gap: 8px;
       padding: 9px 12px;
       border-radius: 999px;
-      background: rgba(25,169,116,0.11);
-      color: #0a7d56;
-      font-weight: 700;
+      background: rgba(92,184,92,0.12);
+      color: var(--brand-dark);
+      font-weight: 800;
       font-size: 0.86rem;
       white-space: nowrap;
     }
 
-    .form-grid {
+    .searchbar {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
     }
 
-    .field {
-      display: grid;
-      gap: 7px;
-    }
-
-    .field.full { grid-column: 1 / -1; }
-
-    .field label {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #334155;
-    }
-
-    .field input,
-    .field select {
+    .searchbar input {
       width: 100%;
-      border: 1px solid rgba(15,23,42,0.12);
+      border: 1px solid rgba(23,38,27,0.14);
       background: #fff;
       border-radius: 16px;
-      padding: 14px 14px;
+      padding: 14px 16px;
       outline: none;
       transition: border-color .15s ease, box-shadow .15s ease;
     }
 
-    .field input:focus,
-    .field select:focus {
-      border-color: rgba(90,54,255,0.48);
-      box-shadow: 0 0 0 4px rgba(90,54,255,0.12);
+    .searchbar input:focus {
+      border-color: rgba(92,184,92,0.45);
+      box-shadow: 0 0 0 4px rgba(92,184,92,0.10);
     }
 
-    .booking-actions {
-      display: flex;
-      flex-wrap: wrap;
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 12px;
-      margin-top: 4px;
     }
 
-    .hero-visual {
-      display: grid;
-      gap: 16px;
-      align-content: start;
+    .quick-link {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--surface-soft);
+      border: 1px solid rgba(23,38,27,0.08);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
 
-    .plane-card, .side-card, .feature-card, .destination-card, .deal-card {
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(15,23,42,0.08);
-      border-radius: var(--radius);
-      box-shadow: 0 14px 34px rgba(15,23,42,0.07);
+    .quick-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(23,38,27,0.08);
+      border-color: rgba(92,184,92,0.22);
     }
 
-    .plane-card {
-      min-height: 350px;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,0.85), transparent 22%),
-        linear-gradient(145deg, rgba(90,54,255,0.16), rgba(255,183,3,0.14)),
-        linear-gradient(180deg, #ffffff, #edf0ff);
+    .quick-link strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.98rem;
     }
 
-    .plane-card .content {
-      position: relative;
-      height: 100%;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .mini-kpi {
-      display: grid;
-      gap: 6px;
-      max-width: 220px;
-      align-self: flex-end;
-      text-align: right;
-    }
-
-    .mini-kpi strong { font-size: 1.8rem; }
-    .mini-kpi span { color: var(--muted); }
-
-    .skyline {
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 54%;
-      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.9));
-    }
-
-    .wing {
-      position: absolute;
-      left: 8%;
-      top: 34%;
-      width: 84%;
-      height: 160px;
-      border-radius: 90px;
-      transform: rotate(-6deg);
-      background: linear-gradient(90deg, rgba(90,54,255,0.95), rgba(141,123,255,0.95));
-      box-shadow: 0 24px 50px rgba(90,54,255,0.25);
-      clip-path: polygon(0 55%, 52% 0, 100% 38%, 70% 45%, 81% 100%, 55% 70%, 37% 82%, 42% 43%);
-      opacity: 0.9;
-    }
-
-    .fuselage {
-      position: absolute;
-      left: 18%;
-      top: 40%;
-      width: 56%;
-      height: 56px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #ffffff, #dbe3ff);
-      box-shadow: inset 0 0 0 1px rgba(15,23,42,0.06), 0 14px 30px rgba(15,23,42,0.1);
-      transform: rotate(-6deg);
-    }
-
-    .fuselage::before {
-      content: "eir";
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      color: var(--primary);
-      text-transform: uppercase;
-      font-size: 1.1rem;
-    }
-
-    .window-row {
-      position: absolute;
-      left: 27%;
-      top: 40.8%;
-      width: 34%;
-      height: 10px;
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 8px;
-      transform: rotate(-6deg);
-      opacity: 0.85;
-    }
-
-    .window-row span {
-      border-radius: 999px;
-      background: rgba(90,54,255,0.35);
-      height: 10px;
-    }
-
-    .route-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 999px;
-      padding: 10px 14px;
-      width: fit-content;
-      box-shadow: 0 12px 30px rgba(15,23,42,0.08);
-      border: 1px solid rgba(15,23,42,0.06);
-      font-weight: 700;
-      color: #334155;
+    .quick-link span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
     }
 
     .section {
-      padding: 20px 0 8px;
+      padding: 18px 0 8px;
     }
 
     .section-head {
       display: flex;
       align-items: end;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
       margin: 0 0 18px;
       flex-wrap: wrap;
     }
 
     .section-head h2 {
       margin: 0;
-      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      font-size: clamp(1.45rem, 2.2vw, 2rem);
       letter-spacing: -0.03em;
     }
 
     .section-head p {
       margin: 0;
       color: var(--muted);
-      max-width: 58ch;
+      max-width: 64ch;
       line-height: 1.6;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 16px;
     }
 
-    .feature-card {
-      padding: 22px;
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(23,38,27,0.08);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 32px rgba(23,38,27,0.06);
+      overflow: hidden;
     }
+
+    .card-pad { padding: 22px; }
 
     .icon {
       width: 54px;
@@ -500,135 +421,266 @@
       display: grid;
       place-items: center;
       margin-bottom: 16px;
-      background: linear-gradient(135deg, rgba(90,54,255,0.14), rgba(255,183,3,0.16));
-      color: var(--primary);
-      font-size: 1.4rem;
+      background: linear-gradient(135deg, rgba(92,184,92,0.14), rgba(255,143,69,0.12));
+      color: var(--brand-dark);
+      font-size: 1.35rem;
       font-weight: 900;
     }
 
-    .feature-card h3,
-    .destination-card h3,
-    .deal-card h3 {
+    .card h3 {
       margin: 0 0 8px;
       font-size: 1.12rem;
     }
 
-    .feature-card p,
-    .destination-card p,
-    .deal-card p {
+    .card p {
       margin: 0;
       color: var(--muted);
       line-height: 1.6;
     }
 
-    .destinations {
+    .troubleshoot {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: 1.04fr 0.96fr;
       gap: 16px;
     }
 
-    .destination-card {
-      overflow: hidden;
-    }
-
-    .destination-media {
-      min-height: 160px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.34)),
-        radial-gradient(circle at top, rgba(255,255,255,0.22), transparent 45%),
-        linear-gradient(135deg, #cbd5ff, #dff5ff);
-      position: relative;
-    }
-
-    .destination-media.tall { background: linear-gradient(135deg, #c7d2fe, #e9f3ff); }
-    .destination-media.city2 { background: linear-gradient(135deg, #dfe7ff, #fff0d9); }
-    .destination-media.city3 { background: linear-gradient(135deg, #d7fff0, #d0ddff); }
-    .destination-media.city4 { background: linear-gradient(135deg, #fce7f3, #e0e7ff); }
-
-    .destination-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.86);
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: #1e293b;
-    }
-
-    .destination-body, .deal-body {
-      padding: 18px;
-    }
-
-    .price {
-      display: inline-flex;
-      gap: 6px;
-      align-items: baseline;
-      margin-top: 12px;
-      font-weight: 800;
-      color: #1e293b;
-    }
-
-    .price span {
-      color: var(--primary);
-      font-size: 1.35rem;
-    }
-
-    .deals {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 16px;
-    }
-
-    .deal-card {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .deal-banner {
-      min-height: 210px;
-      background:
-        linear-gradient(90deg, rgba(90,54,255,0.96), rgba(124,104,255,0.92)),
-        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80') center/cover;
-      color: white;
-      padding: 24px;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .deal-banner h3 { margin-bottom: 8px; font-size: 1.5rem; }
-    .deal-banner p { margin: 0; color: rgba(255,255,255,0.9); max-width: 42ch; }
-
-    .deal-list {
+    .topic-list {
       display: grid;
       gap: 12px;
       padding: 18px;
     }
 
-    .deal-item {
+    .topic-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
       padding: 14px 16px;
       border-radius: 18px;
-      background: rgba(238,241,255,0.75);
-      border: 1px solid rgba(90,54,255,0.08);
+      background: #f7fbf7;
+      border: 1px solid rgba(92,184,92,0.10);
     }
 
-    .deal-item strong { display: block; margin-bottom: 4px; }
-    .deal-item span { color: var(--muted); font-size: 0.92rem; }
-    .deal-item .amount {
-      color: var(--primary);
+    .topic-item strong { display: block; margin-bottom: 4px; }
+    .topic-item span { color: var(--muted); font-size: 0.92rem; }
+    .topic-item .arrow {
       font-weight: 900;
-      white-space: nowrap;
+      color: var(--brand-dark);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .promo-panel {
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.92)),
+        linear-gradient(135deg, rgba(92,184,92,0.28), rgba(255,143,69,0.15)),
+        linear-gradient(180deg, #f7fff7, #eef6ee);
+      border: 1px solid rgba(23,38,27,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .promo-panel .content {
+      position: relative;
+      height: 100%;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(23,38,27,0.08);
+      box-shadow: 0 8px 22px rgba(23,38,27,0.08);
+      font-weight: 800;
+      color: #2b4230;
+    }
+
+    .signal {
+      display: grid;
+      gap: 8px;
+      max-width: 260px;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .signal strong {
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+    }
+
+    .signal span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .mesh {
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 50%;
+      background:
+        radial-gradient(circle at 20% 45%, rgba(255,255,255,0.55), transparent 16%),
+        radial-gradient(circle at 70% 32%, rgba(255,255,255,0.42), transparent 18%),
+        linear-gradient(180deg, transparent, rgba(255,255,255,0.95));
+      opacity: 0.9;
+    }
+
+    .router {
+      position: absolute;
+      left: 16%;
+      top: 40%;
+      width: 68%;
+      height: 88px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #ffffff, #e9f5e9);
+      box-shadow: 0 18px 30px rgba(23,38,27,0.12);
+      border: 1px solid rgba(23,38,27,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-5deg);
+    }
+
+    .router::before {
+      content: "WiFi";
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      color: var(--brand-dark);
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+
+    .leds {
+      position: absolute;
+      left: 33%;
+      top: 57%;
+      width: 34%;
+      height: 8px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      transform: rotate(-5deg);
+    }
+
+    .leds span {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(92,184,92,0.45);
+    }
+
+    .status-card {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+
+    .status-box {
+      padding: 12px;
+      border-radius: 16px;
+      background: #f7fbf7;
+      border: 1px solid rgba(92,184,92,0.10);
+      text-align: center;
+    }
+
+    .status-box strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .status-box span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .modem-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .tab {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: #f7fbf7;
+      border: 1px solid rgba(92,184,92,0.10);
+      font-weight: 800;
+      color: #244029;
+      text-align: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .step {
+      padding: 18px;
+    }
+
+    .step .num {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(92,184,92,0.14);
+      color: var(--brand-dark);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .faq {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .faq-item {
+      padding: 18px 20px;
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid rgba(23,38,27,0.08);
+      box-shadow: 0 12px 28px rgba(23,38,27,0.05);
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
     .footer-cta {
-      margin: 26px 0 44px;
-      background: linear-gradient(135deg, #1e1b4b, #4b2cff 55%, #8d7bff);
-      color: white;
+      margin: 28px 0 40px;
+      background: linear-gradient(135deg, #123019, #2d6f32 60%, #5cb85c);
+      color: #fff;
       border-radius: 30px;
       overflow: hidden;
       box-shadow: var(--shadow);
@@ -637,21 +689,26 @@
     .footer-cta .wrap {
       padding: 28px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 18px;
       flex-wrap: wrap;
     }
 
     .footer-cta h2 {
       margin: 0 0 8px;
-      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
     }
 
-    .footer-cta p { margin: 0; color: rgba(255,255,255,0.9); max-width: 58ch; }
+    .footer-cta p {
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+      max-width: 60ch;
+      line-height: 1.6;
+    }
 
     footer {
-      padding: 0 0 34px;
+      padding: 0 0 32px;
       color: var(--muted);
       font-size: 0.93rem;
     }
@@ -661,11 +718,21 @@
       grid-template-columns: 1.2fr 0.8fr 0.8fr;
       gap: 18px;
       padding-top: 20px;
-      border-top: 1px solid rgba(15,23,42,0.08);
+      border-top: 1px solid rgba(23,38,27,0.08);
     }
 
-    .footer-grid h4 { margin: 0 0 10px; color: var(--text); }
-    .footer-grid ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+    .footer-grid h4 {
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+
+    .footer-grid ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
 
     .small {
       margin-top: 18px;
@@ -674,20 +741,24 @@
 
     .note {
       margin-top: 12px;
-      color: #64748b;
-      font-size: 0.9rem;
+      color: #647a69;
       line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .troubleshoot {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 1024px) {
-      .hero-grid,
-      .deals {
-        grid-template-columns: 1fr;
-      }
       .grid-3,
-      .destinations,
-      .footer-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .steps,
+      .footer-grid,
+      .modem-tabs {
+        grid-template-columns: repeat(2, minmax(0,1fr));
       }
     }
 
@@ -696,28 +767,38 @@
         flex-wrap: wrap;
         padding: 14px 0;
       }
+
       .nav-links {
         display: none;
       }
+
       .stats,
-      .form-grid,
       .grid-3,
-      .destinations,
-      .footer-grid {
+      .steps,
+      .faq,
+      .quick-links,
+      .footer-grid,
+      .status-row,
+      .modem-tabs {
         grid-template-columns: 1fr;
       }
+
       .hero {
-        padding-top: 22px;
+        padding-top: 14px;
       }
+
       h1 { line-height: 1; }
-      .booking-inner,
-      .plane-card .content,
-      .feature-card,
-      .destination-body,
-      .deal-banner,
-      .deal-list,
+
+      .support-inner,
+      .promo-panel .content,
+      .card-pad,
+      .topic-list,
       .footer-cta .wrap {
         padding: 18px;
+      }
+
+      .searchbar {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -725,102 +806,110 @@
 <body>
   <div class="topbar">
     <div class="container">
-      <div>Special launch offer: <strong>up to 30% off</strong> on selected routes.</div>
-      <div>24/7 support with Genesys Messenger</div>
+      <div>Need help with fibre broadband? <strong>Start troubleshooting now</strong>.</div>
+      <div>24/7 digital support with Genesys Messenger</div>
     </div>
   </div>
 
   <header>
     <div class="container nav">
-      <a class="brand" href="#home" aria-label="eir Airlines">
+      <a class="brand" href="#home" aria-label="eir help and support">
         <div class="logo-box">
-          <!-- Replace 'logo.png' with the actual logo filename you upload to your repo -->
-          <img src="logo.png" alt="eir Airlines logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-weight:900;color:#5a36ff;letter-spacing:.04em&quot;>eir</span>'" />
+          <img src="logo.png" alt="eir logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-weight:900;color:#5cb85c;letter-spacing:.04em;text-transform:lowercase&quot;>eir</span>'" />
         </div>
         <div class="brand-text">
-          <span class="name">eir Airlines</span>
-          <span class="tag">Fly better, go further</span>
+          <span class="name">eir</span>
+          <span class="tag">Help & Support</span>
         </div>
       </a>
 
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#flights">Flights</a>
-        <a href="#destinations">Destinations</a>
-        <a href="#deals">Deals</a>
-        <a href="#experience">Experience</a>
+        <a href="#support">Broadband</a>
+        <a href="#modems">Modems</a>
+        <a href="#wifi">WiFi</a>
+        <a href="#speed">Speed</a>
       </nav>
 
-      <a class="cta cta-secondary" href="#flights">Search flights</a>
+      <a class="cta cta-secondary" href="#support">Get help</a>
     </div>
   </header>
 
   <main id="home">
+    <section class="breadcrumbs">
+      <div class="container">
+        <span class="crumb">Home</span>
+        <span class="crumb">Support</span>
+        <span class="crumb">Broadband</span>
+      </div>
+    </section>
+
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">✈︎ New digital experience from eir</div>
-          <h1>Your next journey starts here.</h1>
+          <div class="eyebrow">Broadband or WiFi issues</div>
+          <h1>Get help with your eir fibre broadband.</h1>
           <p class="lead">
-            Book domestic and international flights with a clean, fast interface designed to convert.
-            This test page simulates a premium airline with reservations, featured destinations, and real-time support.
+            Find fast support for modem setup, WiFi problems, broadband speed, and common connectivity issues.
+            The page is structured to echo eir’s support journey and keep the experience focused on self-service first.
           </p>
+
           <div class="hero-actions">
-            <a class="cta cta-primary" href="#flights">Book now</a>
-            <a class="cta cta-ghost" href="#destinations">Explore destinations</a>
+            <a class="cta cta-primary" href="#support">Start troubleshooting</a>
+            <a class="cta cta-ghost" href="#modems">Choose your modem</a>
           </div>
 
           <div class="stats">
             <div class="stat">
-              <strong>120+</strong>
-              <span>active routes</span>
+              <strong>Broadband</strong>
+              <span>line and connection help</span>
             </div>
             <div class="stat">
-              <strong>24/7</strong>
-              <span>passenger support</span>
+              <strong>WiFi</strong>
+              <span>coverage and devices</span>
             </div>
             <div class="stat">
-              <strong>4.9/5</strong>
-              <span>average rating</span>
+              <strong>Speed</strong>
+              <span>test and optimisation</span>
             </div>
           </div>
         </div>
 
-        <aside class="hero-visual" aria-label="Flight visual summary">
-          <div class="plane-card">
+        <aside class="hero-side" aria-label="Support summary">
+          <div class="promo-panel">
             <div class="content">
-              <div>
-                <div class="route-chip">MAD → BCN · direct flight</div>
-              </div>
-              <div class="mini-kpi">
-                <strong>€59</strong>
-                <span>from per journey</span>
+              <div class="promo-badge">Get help with our support tool</div>
+              <div class="signal">
+                <strong>Start here</strong>
+                <span>Use the support flows below for setup, WiFi, speed, and modem-specific help.</span>
               </div>
             </div>
-            <div class="wing"></div>
-            <div class="fuselage"></div>
-            <div class="window-row">
-              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <div class="router"></div>
+            <div class="leds">
+              <span></span><span></span><span></span><span></span>
             </div>
-            <div class="skyline"></div>
+            <div class="mesh"></div>
           </div>
 
-          <div class="side-card" style="padding:18px; display:grid; gap:10px;">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+          <div class="card status-card">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
               <div>
-                <strong style="display:block; font-size:1rem;">Smart check-in</strong>
-                <span style="color:var(--muted); font-size:.93rem;">Documents, seats, and baggage</span>
+                <strong style="display:block; font-size:1rem;">I want help with...</strong>
+                <span style="color:var(--muted); font-size:.93rem;">Modem, WiFi, speed and contact options</span>
               </div>
-              <span class="pill">Available</span>
+              <span class="pill">Available now</span>
             </div>
-            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
-              <div style="padding:12px; border-radius:16px; background:#f4f7ff; text-align:center;">
-                <strong>45m</strong><br /><span style="color:var(--muted); font-size:.86rem;">before</span>
+            <div class="status-row">
+              <div class="status-box">
+                <strong>Modem</strong>
+                <span>setup</span>
               </div>
-              <div style="padding:12px; border-radius:16px; background:#f4f7ff; text-align:center;">
-                <strong>1 PC</strong><br /><span style="color:var(--muted); font-size:.86rem;">baggage</span>
+              <div class="status-box">
+                <strong>WiFi</strong>
+                <span>issues</span>
               </div>
-              <div style="padding:12px; border-radius:16px; background:#f4f7ff; text-align:center;">
-                <strong>Seat+</strong><br /><span style="color:var(--muted); font-size:.86rem;">seat</span>
+              <div class="status-box">
+                <strong>Speed</strong>
+                <span>support</span>
               </div>
             </div>
           </div>
@@ -828,205 +917,221 @@
       </div>
     </section>
 
-    <section class="section" id="flights">
+    <section class="section" id="support">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Book your flight</h2>
-            <p>Test booking form with airline styling. You can later connect it to your backend or booking engine.</p>
+            <h2>Broadband or WiFi issues</h2>
+            <p>Get help with our new support tool. Start troubleshooting now.</p>
           </div>
         </div>
 
-        <div class="booking-card">
-          <div class="booking-inner">
-            <div class="booking-header">
+        <div class="card support-card">
+          <div class="support-inner">
+            <div class="support-head">
               <div>
-                <h2>Find the best eir fares</h2>
-                <p>Select origin, destination, and dates to simulate a flight search.</p>
+                <h2>I want help with...</h2>
+                <p>Use these options to move into modem setup, WiFi help, speed support, or contact information.</p>
               </div>
-              <div class="pill">Best price guaranteed</div>
+              <div class="pill">Troubleshooting</div>
             </div>
 
-            <form class="form-grid" onsubmit="event.preventDefault(); alert('Test search submitted. Connect this form to your backend whenever you are ready.');">
-              <div class="field">
-                <label for="from">From</label>
-                <input id="from" type="text" placeholder="Madrid (MAD)" value="Madrid (MAD)" />
-              </div>
-              <div class="field">
-                <label for="to">To</label>
-                <input id="to" type="text" placeholder="Barcelona (BCN)" value="Barcelona (BCN)" />
-              </div>
-              <div class="field">
-                <label for="depart">Departure</label>
-                <input id="depart" type="date" />
-              </div>
-              <div class="field">
-                <label for="return">Return</label>
-                <input id="return" type="date" />
-              </div>
-              <div class="field">
-                <label for="passengers">Passengers</label>
-                <select id="passengers">
-                  <option>1 passenger</option>
-                  <option>2 passengers</option>
-                  <option>3 passengers</option>
-                  <option>4 passengers</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="class">Class</label>
-                <select id="class">
-                  <option>Economy</option>
-                  <option>Premium Economy</option>
-                  <option>Business</option>
-                </select>
-              </div>
-              <div class="field full">
-                <label for="promo">Promo code</label>
-                <input id="promo" type="text" placeholder="EIRWELCOME" />
-              </div>
-              <div class="field full">
-                <div class="booking-actions">
-                  <button class="cta cta-primary" type="submit">Search flights</button>
-                  <a class="cta cta-ghost" href="#deals">View deals</a>
-                </div>
-              </div>
+            <form class="searchbar" onsubmit="event.preventDefault(); alert('Search submitted. Connect this to your own flow if needed.');">
+              <input type="text" placeholder="Search broadband, WiFi, modem, speed or setup" aria-label="Search broadband help" />
+              <button class="cta cta-primary" type="submit">Search</button>
             </form>
+
+            <div class="quick-links">
+              <a class="quick-link" href="#modems">
+                <strong>Choose your modem</strong>
+                <span>eir fibre box 7, F3500, F3000 and F2000.</span>
+              </a>
+              <a class="quick-link" href="#wifi">
+                <strong>WiFi issues</strong>
+                <span>Restore settings, reconnect devices and optimise WiFi.</span>
+              </a>
+              <a class="quick-link" href="#speed">
+                <strong>Speed support</strong>
+                <span>Improve performance and check your connection.</span>
+              </a>
+              <a class="quick-link" href="#faq">
+                <strong>Contact us</strong>
+                <span>Find the support path that fits your problem.</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="experience">
+    <section class="section" id="modems">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>A premium experience</h2>
-            <p>Blocks designed for a modern airline homepage: service, punctuality, and digital assistance.</p>
+            <h2>Choose your modem</h2>
+            <p>Click below to get help with set-up, WiFi and broadband speed support for the different eir fibre boxes.</p>
+          </div>
+        </div>
+
+        <div class="modem-tabs">
+          <div class="tab">eir fibre box 7</div>
+          <div class="tab">eir fibre box F3500</div>
+          <div class="tab">eir fibre box F3000</div>
+          <div class="tab">F2000</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="wifi">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>WiFi help</h2>
+            <p>Use these support blocks to mirror the real page’s practical guidance and troubleshooting style.</p>
+          </div>
+        </div>
+
+        <div class="troubleshoot">
+          <article class="card">
+            <div class="promo-panel" style="border-radius:24px; min-height:100%;">
+              <div class="content" style="position:relative; min-height:100%;">
+                <div class="promo-badge">If you are having WiFi issues</div>
+                <div style="margin-top:auto; max-width:40ch;">
+                  <h3 style="margin:0 0 8px; font-size:1.45rem; letter-spacing:-0.03em;">Restart, reconnect, and optimise</h3>
+                  <p style="margin:0; color:var(--muted); line-height:1.6;">
+                    Hold down the WiFi button if needed, forget the network on the device, and reconnect from the beginning.
+                    Place the modem in a better location to improve coverage.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card topic-list">
+            <div class="topic-item">
+              <div>
+                <strong>Where can I find my WiFi password?</strong>
+                <span>Check the label on the modem or your account details.</span>
+              </div>
+              <div class="arrow">→</div>
+            </div>
+            <div class="topic-item">
+              <div>
+                <strong>Optimising WiFi location</strong>
+                <span>Move the hub to a central open position.</span>
+              </div>
+              <div class="arrow">→</div>
+            </div>
+            <div class="topic-item">
+              <div>
+                <strong>WiFi frequency</strong>
+                <span>Understand band behaviour and device performance.</span>
+              </div>
+              <div class="arrow">→</div>
+            </div>
+            <div class="topic-item">
+              <div>
+                <strong>Connecting devices</strong>
+                <span>Reconnect phones, laptops and smart home devices.</span>
+              </div>
+              <div class="arrow">→</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="speed">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Speed support</h2>
+            <p>Helpful steps for broadband speed issues, including a simple reference flow for performance checks.</p>
           </div>
         </div>
 
         <div class="grid-3">
-          <article class="feature-card">
-            <div class="icon">∞</div>
-            <h3>Full connectivity</h3>
-            <p>Messaging, support, and tracking integrated to help passengers before, during, and after the flight.</p>
+          <article class="card card-pad">
+            <div class="icon">1</div>
+            <h3>Run a speed test</h3>
+            <p>Check the connection from a device close to the router to separate WiFi issues from line issues.</p>
           </article>
-          <article class="feature-card">
-            <div class="icon">⏱</div>
-            <h3>Fast bookings</h3>
-            <p>Quick interface with a clear visual hierarchy to improve conversion in search and booking flows.</p>
+
+          <article class="card card-pad">
+            <div class="icon">2</div>
+            <h3>Restart the modem</h3>
+            <p>Power cycling the modem can clear temporary faults and restore normal performance.</p>
           </article>
-          <article class="feature-card">
-            <div class="icon">✦</div>
-            <h3>Memorable branding</h3>
-            <p>Clean design, premium details, and a palette inspired by the logo to strengthen the visual identity.</p>
+
+          <article class="card card-pad">
+            <div class="icon">3</div>
+            <h3>Check placement</h3>
+            <p>Move the modem away from thick walls and interference to improve coverage and throughput.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="destinations">
+    <section class="section" id="setup">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Featured destinations</h2>
-            <p>Destination ideas to showcase popular routes or seasonal campaigns.</p>
+            <h2>Setup and installation</h2>
+            <p>Support for broadband installation, self-install, and basic first-time setup guidance.</p>
           </div>
         </div>
 
-        <div class="destinations">
-          <article class="destination-card">
-            <div class="destination-media tall">
-              <div class="destination-badge">Europe</div>
-            </div>
-            <div class="destination-body">
-              <h3>London</h3>
-              <p>Urban getaways, business connections, and culture all year round.</p>
-              <div class="price">From <span>€79</span></div>
-            </div>
+        <div class="steps">
+          <article class="card step">
+            <div class="num">1</div>
+            <h3>Connect power</h3>
+            <p>Plug in the modem and wait for the lights to stabilise.</p>
           </article>
-
-          <article class="destination-card">
-            <div class="destination-media city2">
-              <div class="destination-badge">City break</div>
-            </div>
-            <div class="destination-body">
-              <h3>Paris</h3>
-              <p>The perfect weekend escape for premium experiences and romance.</p>
-              <div class="price">From <span>€69</span></div>
-            </div>
+          <article class="card step">
+            <div class="num">2</div>
+            <h3>Connect the line</h3>
+            <p>Ensure the fibre/line cable is connected to the correct port.</p>
           </article>
-
-          <article class="destination-card">
-            <div class="destination-media city3">
-              <div class="destination-badge">Beach</div>
-            </div>
-            <div class="destination-body">
-              <h3>Lisbon</h3>
-              <p>Views, food, and a short connection for almost any plan.</p>
-              <div class="price">From <span>€49</span></div>
-            </div>
+          <article class="card step">
+            <div class="num">3</div>
+            <h3>Join the WiFi</h3>
+            <p>Use the network name and password printed on the modem label.</p>
           </article>
-
-          <article class="destination-card">
-            <div class="destination-media city4">
-              <div class="destination-badge">North</div>
-            </div>
-            <div class="destination-body">
-              <h3>Dublin</h3>
-              <p>A route inspired by the eir name, ideal for brand storytelling.</p>
-              <div class="price">From <span>€89</span></div>
-            </div>
+          <article class="card step">
+            <div class="num">4</div>
+            <h3>Confirm service</h3>
+            <p>Test browsing and speed once the connection is fully up.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="deals">
+    <section class="section" id="faq">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Seasonal deals</h2>
-            <p>Use discounts, marketing messages, and visual urgency to make the landing page feel more realistic.</p>
+            <h2>Frequently asked questions</h2>
+            <p>Short support-style answers that make the page feel closer to the real eir help flow.</p>
           </div>
         </div>
 
-        <div class="deals">
-          <article class="deal-card">
-            <div class="deal-banner">
-              <div>
-                <h3>eir Week: up to 30% off</h3>
-                <p>Special promotion on selected flights with baggage included and flexible changes.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="deal-card">
-            <div class="deal-list">
-              <div class="deal-item">
-                <div>
-                  <strong>Light Fare</strong>
-                  <span>Ideal for short getaways</span>
-                </div>
-                <div class="amount">€39</div>
-              </div>
-              <div class="deal-item">
-                <div>
-                  <strong>Flex Fare</strong>
-                  <span>Greater change flexibility</span>
-                </div>
-                <div class="amount">€69</div>
-              </div>
-              <div class="deal-item">
-                <div>
-                  <strong>Business Select</strong>
-                  <span>Priority boarding and lounge</span>
-                </div>
-                <div class="amount">€129</div>
-              </div>
-            </div>
-          </article>
+        <div class="faq">
+          <div class="faq-item">
+            <strong>What do the lights mean?</strong>
+            <p>Check the modem lights to see whether power, line and WiFi are all working as expected.</p>
+          </div>
+          <div class="faq-item">
+            <strong>How do I reset WiFi settings?</strong>
+            <p>Use the modem reset procedure to restore the default network name and password.</p>
+          </div>
+          <div class="faq-item">
+            <strong>Why is my broadband slow?</strong>
+            <p>Test near the modem, restart it, and check for coverage or interference issues.</p>
+          </div>
+          <div class="faq-item">
+            <strong>Can I contact support here?</strong>
+            <p>Yes. The Genesys Messenger widget remains in the bottom-right corner for support conversations.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1034,8 +1139,8 @@
     <section class="footer-cta">
       <div class="container wrap">
         <div>
-          <h2>Need help with your booking?</h2>
-          <p>The Genesys widget will appear in the bottom-right corner so you can test support, messaging, or automations.</p>
+          <h2>Need help with your broadband?</h2>
+          <p>Open the Genesys widget to test live support, messaging, or a guided troubleshooting flow.</p>
         </div>
         <a class="cta cta-primary" href="#home">Back to top</a>
       </div>
@@ -1045,31 +1150,31 @@
   <footer>
     <div class="container footer-grid">
       <div>
-        <h4>eir Airlines</h4>
-        <p>Demo landing page for internal testing, with airline styling and the Genesys deployment integrated.</p>
-        <p class="note">Important: place the logo in the same folder as this file and name it <strong>logo.png</strong>, or change the path in the HTML.</p>
+        <h4>eir</h4>
+        <p>Demo support page for fibre broadband help, designed to resemble a telecom help centre layout.</p>
+        <p class="note">Tip: replace <strong>logo.png</strong> with your own logo file if needed.</p>
       </div>
       <div>
-        <h4>Services</h4>
+        <h4>Support topics</h4>
         <ul>
-          <li>Flight booking</li>
-          <li>Online check-in</li>
-          <li>Baggage and extras</li>
-          <li>Passenger support</li>
+          <li>Broadband or WiFi issues</li>
+          <li>Choose your modem</li>
+          <li>Speed support</li>
+          <li>Installation help</li>
         </ul>
       </div>
       <div>
         <h4>Contact</h4>
         <ul>
-          <li>24/7 support</li>
-          <li>Help center</li>
-          <li>Flight status</li>
-          <li>Offers and promotions</li>
+          <li>24/7 digital support</li>
+          <li>Help centre</li>
+          <li>Outage information</li>
+          <li>Self-service articles</li>
         </ul>
       </div>
     </div>
     <div class="container small">
-      © 2026 eir Airlines. Test page.
+      © 2026 eir. Test page for internal deployment and support flow validation.
     </div>
   </footer>
 
@@ -1090,18 +1195,6 @@
       environment: 'prod-euw2',
       deploymentId: '2b307430-db1c-424c-8eba-2fec5e2a82db'
     });
-
-    // Default dates for the form
-    const depart = document.getElementById('depart');
-    const ret = document.getElementById('return');
-    const today = new Date();
-    const plus = (days) => {
-      const d = new Date(today);
-      d.setDate(d.getDate() + days);
-      return d.toISOString().split('T')[0];
-    };
-    depart.value = plus(7);
-    ret.value = plus(14);
   </script>
 </body>
 </html>
