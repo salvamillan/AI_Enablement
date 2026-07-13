@@ -4,774 +4,697 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>eir | Fibre Broadband Help & Support</title>
-  <meta name="description" content="eir Fibre Broadband Help & Support page with troubleshooting, modem support, WiFi help, speed guidance, and Genesys Messenger integration." />
+  <meta name="description" content="eir Fibre Broadband Help & Support with troubleshooting, modem guides, WiFi help, speed tips and Genesys Messenger." />
   <style>
-    :root {
-      --bg: #f5f7f2;
-      --surface: #ffffff;
-      --surface-soft: #f8faf7;
-      --text: #17261b;
-      --muted: #5d6c61;
-      --line: rgba(23, 38, 27, 0.10);
-      --brand: #5cb85c;
-      --brand-dark: #2f7d32;
-      --brand-soft: #e8f5e9;
-      --accent: #ff8f45;
-      --shadow: 0 16px 38px rgba(23, 38, 27, 0.10);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --max: 1180px;
+    :root{
+      --bg:#f6f8f3;
+      --surface:#ffffff;
+      --surface-soft:#f9fbf7;
+      --text:#162219;
+      --muted:#5f6d62;
+      --line:rgba(22,34,25,.1);
+      --brand:#66bb6a;
+      --brand-dark:#2f7d32;
+      --brand-soft:#e8f5e9;
+      --shadow:0 14px 36px rgba(22,34,25,.09);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at top left, rgba(92,184,92,0.10), transparent 26%),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
-      min-height: 100vh;
+        radial-gradient(circle at top left, rgba(102,187,106,.11), transparent 26%),
+        linear-gradient(180deg,#fff 0%,var(--bg) 100%);
+      min-height:100vh;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button, input, select { font: inherit; }
-    img { max-width: 100%; display: block; }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,input,select{font:inherit}
 
-    .container {
-      width: min(100% - 32px, var(--max));
-      margin: 0 auto;
+    .container{
+      width:min(100% - 32px,var(--max));
+      margin:0 auto;
     }
 
-    .topbar {
-      background: linear-gradient(90deg, #10351b, #2c6f31 55%, #5cb85c);
-      color: #fff;
-      font-size: 0.92rem;
-      padding: 10px 0;
+    .topbar{
+      background:linear-gradient(90deg,#10331a,#2b6f31 55%,#66bb6a);
+      color:#fff;
+      font-size:.92rem;
+      padding:10px 0;
+    }
+    .topbar .container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .topbar strong{color:#f8ffd9}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(22,34,25,.08);
     }
 
-    .topbar .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+    .nav{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
 
-    .topbar strong { color: #f8ffd9; }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(23, 38, 27, 0.08);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
-    .nav {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+    .logo-box{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      background:#fff;
+      border:1px solid rgba(22,34,25,.1);
+      box-shadow:0 10px 26px rgba(22,34,25,.08);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .logo-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
+    .brand-text .name{
+      display:block;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:.02em;
+      text-transform:lowercase;
+      font-size:1.1rem;
+    }
+    .brand-text .tag{
+      display:block;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:4px;
     }
 
-    .logo-box {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: #fff;
-      border: 1px solid rgba(23,38,27,0.10);
-      box-shadow: 0 10px 26px rgba(23,38,27,0.08);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      flex: 0 0 auto;
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      color:#26402b;
+      font-weight:700;
+      font-size:.96rem;
+    }
+    .nav-links a{opacity:.88}
+    .nav-links a:hover{opacity:1;color:var(--brand-dark)}
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:0;
+      border-radius:999px;
+      padding:13px 18px;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      white-space:nowrap;
+    }
+    .cta:hover{transform:translateY(-1px)}
+    .cta-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--brand-dark),var(--brand));
+      box-shadow:0 12px 24px rgba(47,125,50,.22);
+    }
+    .cta-secondary{
+      color:var(--brand-dark);
+      background:#ecf8ec;
+      border:1px solid rgba(102,187,106,.15);
+    }
+    .cta-ghost{
+      color:var(--text);
+      background:#fff;
+      border:1px solid var(--line);
     }
 
-    .logo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .breadcrumbs{
+      padding:18px 0 0;
+      color:#6a786e;
+      font-size:.93rem;
+    }
+    .breadcrumbs .container{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .crumb + .crumb::before{
+      content:"›";
+      color:#a0aba3;
+      margin-right:8px;
     }
 
-    .brand-text .name {
-      display: block;
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      text-transform: lowercase;
-      font-size: 1.1rem;
+    .hero{
+      padding:18px 0 14px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      align-items:stretch;
     }
 
-    .brand-text .tag {
-      display: block;
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 4px;
+    .hero-copy{padding:20px 0}
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(102,187,106,.12);
+      color:var(--brand-dark);
+      font-weight:800;
+      font-size:.92rem;
+      margin-bottom:16px;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      color: #26402b;
-      font-weight: 700;
-      font-size: 0.96rem;
+    h1{
+      margin:0;
+      font-size:clamp(2.3rem,4.4vw,4.6rem);
+      line-height:.96;
+      letter-spacing:-.05em;
     }
 
-    .nav-links a { opacity: 0.88; }
-    .nav-links a:hover { opacity: 1; color: var(--brand-dark); }
-
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 18px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-      white-space: nowrap;
+    .lead{
+      max-width:60ch;
+      color:var(--muted);
+      font-size:clamp(1rem,1.45vw,1.12rem);
+      line-height:1.65;
+      margin:16px 0 24px;
     }
 
-    .cta:hover { transform: translateY(-1px); }
-    .cta-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--brand-dark), var(--brand));
-      box-shadow: 0 12px 24px rgba(47,125,50,0.22);
-    }
-    .cta-secondary {
-      color: var(--brand-dark);
-      background: #ecf8ec;
-      border: 1px solid rgba(92,184,92,0.15);
-    }
-    .cta-ghost {
-      color: var(--text);
-      background: #fff;
-      border: 1px solid var(--line);
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:24px;
     }
 
-    .breadcrumbs {
-      padding: 18px 0 0;
-      color: #6a786e;
-      font-size: 0.93rem;
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
     }
-
-    .breadcrumbs .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
+    .stat{
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(22,34,25,.08);
+      border-radius:20px;
+      padding:16px;
+      box-shadow:0 10px 28px rgba(22,34,25,.05);
     }
-
-    .crumb {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .stat strong{
+      display:block;
+      font-size:1.3rem;
+      margin-bottom:4px;
     }
+    .stat span{color:var(--muted);font-size:.92rem}
 
-    .crumb + .crumb::before {
-      content: "›";
-      color: #a0aba3;
+    .support-card{
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(22,34,25,.08);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
     }
-
-    .hero {
-      padding: 18px 0 14px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .hero-copy {
-      padding: 20px 0;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(92,184,92,0.12);
-      color: var(--brand-dark);
-      font-weight: 800;
-      font-size: 0.92rem;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.3rem, 4.4vw, 4.5rem);
-      line-height: 0.96;
-      letter-spacing: -0.05em;
-    }
-
-    .lead {
-      max-width: 60ch;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.45vw, 1.12rem);
-      line-height: 1.65;
-      margin: 16px 0 24px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .stat {
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(23,38,27,0.08);
-      border-radius: 20px;
-      padding: 16px;
-      box-shadow: 0 10px 28px rgba(23,38,27,0.05);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.3rem;
-      margin-bottom: 4px;
-    }
-    .stat span { color: var(--muted); font-size: 0.92rem; }
-
-    .support-card {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(23,38,27,0.08);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .support-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .support-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at top right, rgba(92,184,92,0.16), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(255,143,69,0.12), transparent 24%);
-      pointer-events: none;
+        radial-gradient(circle at top right, rgba(102,187,106,.16), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(255,143,69,.12), transparent 24%);
+      pointer-events:none;
     }
 
-    .support-inner {
-      position: relative;
-      padding: 22px;
-      display: grid;
-      gap: 16px;
+    .support-inner{
+      position:relative;
+      padding:22px;
+      display:grid;
+      gap:16px;
     }
 
-    .support-head {
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+    .support-head{
+      display:flex;
+      align-items:start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .support-head h2{
+      margin:0;
+      font-size:1.35rem;
+      letter-spacing:-.03em;
+    }
+    .support-head p{
+      margin:6px 0 0;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.96rem;
     }
 
-    .support-head h2 {
-      margin: 0;
-      font-size: 1.35rem;
-      letter-spacing: -0.03em;
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:rgba(102,187,106,.12);
+      color:var(--brand-dark);
+      font-weight:800;
+      font-size:.86rem;
+      white-space:nowrap;
     }
 
-    .support-head p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 0.96rem;
+    .searchbar{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+    }
+    .searchbar input{
+      width:100%;
+      border:1px solid rgba(22,34,25,.14);
+      background:#fff;
+      border-radius:16px;
+      padding:14px 16px;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    .searchbar input:focus{
+      border-color:rgba(102,187,106,.45);
+      box-shadow:0 0 0 4px rgba(102,187,106,.10);
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(92,184,92,0.12);
-      color: var(--brand-dark);
-      font-weight: 800;
-      font-size: 0.86rem;
-      white-space: nowrap;
+    .quick-links{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+    .quick-link{
+      padding:16px;
+      border-radius:18px;
+      background:var(--surface-soft);
+      border:1px solid rgba(22,34,25,.08);
+      transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .quick-link:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 22px rgba(22,34,25,.08);
+      border-color:rgba(102,187,106,.22);
+    }
+    .quick-link strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:.98rem;
+    }
+    .quick-link span{
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.45;
     }
 
-    .searchbar {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
+    .section{padding:18px 0 8px}
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin:0 0 18px;
+      flex-wrap:wrap;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:clamp(1.45rem,2.2vw,2rem);
+      letter-spacing:-.03em;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:64ch;
+      line-height:1.6;
     }
 
-    .searchbar input {
-      width: 100%;
-      border: 1px solid rgba(23,38,27,0.14);
-      background: #fff;
-      border-radius: 16px;
-      padding: 14px 16px;
-      outline: none;
-      transition: border-color .15s ease, box-shadow .15s ease;
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
     }
 
-    .searchbar input:focus {
-      border-color: rgba(92,184,92,0.45);
-      box-shadow: 0 0 0 4px rgba(92,184,92,0.10);
+    .card{
+      background:var(--surface);
+      border:1px solid rgba(22,34,25,.08);
+      border-radius:var(--radius);
+      box-shadow:0 14px 32px rgba(22,34,25,.06);
+      overflow:hidden;
+    }
+    .card-pad{padding:22px}
+
+    .icon{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      margin-bottom:16px;
+      background:linear-gradient(135deg, rgba(102,187,106,.14), rgba(255,143,69,.12));
+      color:var(--brand-dark);
+      font-size:1.35rem;
+      font-weight:900;
     }
 
-    .quick-links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 12px;
+    .card h3{
+      margin:0 0 8px;
+      font-size:1.12rem;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
     }
 
-    .quick-link {
-      padding: 16px;
-      border-radius: 18px;
-      background: var(--surface-soft);
-      border: 1px solid rgba(23,38,27,0.08);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    .troubleshoot{
+      display:grid;
+      grid-template-columns:1.04fr .96fr;
+      gap:16px;
     }
 
-    .quick-link:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 22px rgba(23,38,27,0.08);
-      border-color: rgba(92,184,92,0.22);
+    .topic-list{
+      display:grid;
+      gap:12px;
+      padding:18px;
+    }
+    .topic-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:#f7fbf7;
+      border:1px solid rgba(102,187,106,.10);
+    }
+    .topic-item strong{display:block;margin-bottom:4px}
+    .topic-item span{color:var(--muted);font-size:.92rem}
+    .topic-item .arrow{font-weight:900;color:var(--brand-dark)}
+
+    .hero-side{
+      display:grid;
+      gap:16px;
+      align-content:start;
     }
 
-    .quick-link strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 0.98rem;
-    }
-
-    .quick-link span {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    .section {
-      padding: 18px 0 8px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin: 0 0 18px;
-      flex-wrap: wrap;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(1.45rem, 2.2vw, 2rem);
-      letter-spacing: -0.03em;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 64ch;
-      line-height: 1.6;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid rgba(23,38,27,0.08);
-      border-radius: var(--radius);
-      box-shadow: 0 14px 32px rgba(23,38,27,0.06);
-      overflow: hidden;
-    }
-
-    .card-pad { padding: 22px; }
-
-    .icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, rgba(92,184,92,0.14), rgba(255,143,69,0.12));
-      color: var(--brand-dark);
-      font-size: 1.35rem;
-      font-weight: 900;
-    }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 1.12rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .troubleshoot {
-      display: grid;
-      grid-template-columns: 1.04fr 0.96fr;
-      gap: 16px;
-    }
-
-    .topic-list {
-      display: grid;
-      gap: 12px;
-      padding: 18px;
-    }
-
-    .topic-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: #f7fbf7;
-      border: 1px solid rgba(92,184,92,0.10);
-    }
-
-    .topic-item strong { display: block; margin-bottom: 4px; }
-    .topic-item span { color: var(--muted); font-size: 0.92rem; }
-    .topic-item .arrow {
-      font-weight: 900;
-      color: var(--brand-dark);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 16px;
-      align-content: start;
-    }
-
-    .promo-panel {
-      min-height: 320px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 30px;
+    .promo-panel{
+      min-height:320px;
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.92)),
-        linear-gradient(135deg, rgba(92,184,92,0.28), rgba(255,143,69,0.15)),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.92)),
+        linear-gradient(135deg, rgba(102,187,106,.28), rgba(255,143,69,.15)),
         linear-gradient(180deg, #f7fff7, #eef6ee);
-      border: 1px solid rgba(23,38,27,0.08);
-      box-shadow: var(--shadow);
+      border:1px solid rgba(22,34,25,.08);
+      box-shadow:var(--shadow);
     }
-
-    .promo-panel .content {
-      position: relative;
-      height: 100%;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
+    .promo-panel .content{
+      position:relative;
+      height:100%;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
     }
-
-    .promo-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.84);
-      border: 1px solid rgba(23,38,27,0.08);
-      box-shadow: 0 8px 22px rgba(23,38,27,0.08);
-      font-weight: 800;
-      color: #2b4230;
+    .promo-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:fit-content;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.84);
+      border:1px solid rgba(22,34,25,.08);
+      box-shadow:0 8px 22px rgba(22,34,25,.08);
+      font-weight:800;
+      color:#2b4230;
     }
-
-    .signal {
-      display: grid;
-      gap: 8px;
-      max-width: 260px;
-      align-self: flex-end;
-      text-align: right;
+    .signal{
+      display:grid;
+      gap:8px;
+      max-width:260px;
+      align-self:flex-end;
+      text-align:right;
     }
-
-    .signal strong {
-      font-size: 1.7rem;
-      letter-spacing: -0.03em;
+    .signal strong{
+      font-size:1.7rem;
+      letter-spacing:-.03em;
     }
-
-    .signal span {
-      color: var(--muted);
-      line-height: 1.5;
+    .signal span{
+      color:var(--muted);
+      line-height:1.5;
     }
-
-    .mesh {
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 50%;
+    .mesh{
+      position:absolute;
+      inset:auto 0 0 0;
+      height:50%;
       background:
-        radial-gradient(circle at 20% 45%, rgba(255,255,255,0.55), transparent 16%),
-        radial-gradient(circle at 70% 32%, rgba(255,255,255,0.42), transparent 18%),
-        linear-gradient(180deg, transparent, rgba(255,255,255,0.95));
-      opacity: 0.9;
+        radial-gradient(circle at 20% 45%, rgba(255,255,255,.55), transparent 16%),
+        radial-gradient(circle at 70% 32%, rgba(255,255,255,.42), transparent 18%),
+        linear-gradient(180deg, transparent, rgba(255,255,255,.95));
+      opacity:.9;
+    }
+    .router{
+      position:absolute;
+      left:16%;
+      top:40%;
+      width:68%;
+      height:88px;
+      border-radius:26px;
+      background:linear-gradient(135deg, #ffffff, #e9f5e9);
+      box-shadow:0 18px 30px rgba(22,34,25,.12);
+      border:1px solid rgba(22,34,25,.07);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transform:rotate(-5deg);
+    }
+    .router::before{
+      content:"WiFi";
+      font-weight:900;
+      letter-spacing:.12em;
+      color:var(--brand-dark);
+      text-transform:uppercase;
+      font-size:1rem;
+    }
+    .leds{
+      position:absolute;
+      left:33%;
+      top:57%;
+      width:34%;
+      height:8px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      transform:rotate(-5deg);
+    }
+    .leds span{
+      height:8px;
+      border-radius:999px;
+      background:rgba(102,187,106,.45);
     }
 
-    .router {
-      position: absolute;
-      left: 16%;
-      top: 40%;
-      width: 68%;
-      height: 88px;
-      border-radius: 26px;
-      background: linear-gradient(135deg, #ffffff, #e9f5e9);
-      box-shadow: 0 18px 30px rgba(23,38,27,0.12);
-      border: 1px solid rgba(23,38,27,0.07);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: rotate(-5deg);
+    .status-card{
+      padding:18px;
+      display:grid;
+      gap:12px;
+    }
+    .status-row{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+    .status-box{
+      padding:12px;
+      border-radius:16px;
+      background:#f7fbf7;
+      border:1px solid rgba(102,187,106,.10);
+      text-align:center;
+    }
+    .status-box strong{
+      display:block;
+      font-size:1rem;
+    }
+    .status-box span{
+      color:var(--muted);
+      font-size:.86rem;
     }
 
-    .router::before {
-      content: "WiFi";
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      color: var(--brand-dark);
-      text-transform: uppercase;
-      font-size: 1rem;
+    .modem-tabs{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+    }
+    .tab{
+      padding:14px 16px;
+      border-radius:18px;
+      background:#f7fbf7;
+      border:1px solid rgba(102,187,106,.10);
+      font-weight:800;
+      color:#244029;
+      text-align:center;
     }
 
-    .leds {
-      position: absolute;
-      left: 33%;
-      top: 57%;
-      width: 34%;
-      height: 8px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      transform: rotate(-5deg);
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+    }
+    .step{padding:18px}
+    .step .num{
+      width:38px;
+      height:38px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:rgba(102,187,106,.14);
+      color:var(--brand-dark);
+      font-weight:900;
+      margin-bottom:14px;
     }
 
-    .leds span {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(92,184,92,0.45);
+    .faq{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    .faq-item{
+      padding:18px 20px;
+      background:var(--surface);
+      border-radius:20px;
+      border:1px solid rgba(22,34,25,.08);
+      box-shadow:0 12px 28px rgba(22,34,25,.05);
+    }
+    .faq-item strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1rem;
+    }
+    .faq-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
     }
 
-    .status-card {
-      padding: 18px;
-      display: grid;
-      gap: 12px;
+    .footer-cta{
+      margin:28px 0 40px;
+      background:linear-gradient(135deg,#123019,#2d6f32 60%,#5cb85c);
+      color:#fff;
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .footer-cta .wrap{
+      padding:28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .footer-cta h2{
+      margin:0 0 8px;
+      font-size:clamp(1.5rem,2.6vw,2.2rem);
+    }
+    .footer-cta p{
+      margin:0;
+      color:rgba(255,255,255,.9);
+      max-width:60ch;
+      line-height:1.6;
     }
 
-    .status-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
+    footer{
+      padding:0 0 32px;
+      color:var(--muted);
+      font-size:.93rem;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      gap:18px;
+      padding-top:20px;
+      border-top:1px solid rgba(22,34,25,.08);
+    }
+    .footer-grid h4{
+      margin:0 0 10px;
+      color:var(--text);
+    }
+    .footer-grid ul{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+    }
+    .small{
+      margin-top:18px;
+      font-size:.86rem;
+    }
+    .note{
+      margin-top:12px;
+      color:#647a69;
+      line-height:1.6;
+      font-size:.9rem;
     }
 
-    .status-box {
-      padding: 12px;
-      border-radius: 16px;
-      background: #f7fbf7;
-      border: 1px solid rgba(92,184,92,0.10);
-      text-align: center;
-    }
-
-    .status-box strong {
-      display: block;
-      font-size: 1rem;
-    }
-
-    .status-box span {
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .modem-tabs {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .tab {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: #f7fbf7;
-      border: 1px solid rgba(92,184,92,0.10);
-      font-weight: 800;
-      color: #244029;
-      text-align: center;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 16px;
-    }
-
-    .step {
-      padding: 18px;
-    }
-
-    .step .num {
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(92,184,92,0.14);
-      color: var(--brand-dark);
-      font-weight: 900;
-      margin-bottom: 14px;
-    }
-
-    .faq {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .faq-item {
-      padding: 18px 20px;
-      background: var(--surface);
-      border-radius: 20px;
-      border: 1px solid rgba(23,38,27,0.08);
-      box-shadow: 0 12px 28px rgba(23,38,27,0.05);
-    }
-
-    .faq-item strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1rem;
-    }
-
-    .faq-item p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .footer-cta {
-      margin: 28px 0 40px;
-      background: linear-gradient(135deg, #123019, #2d6f32 60%, #5cb85c);
-      color: #fff;
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .footer-cta .wrap {
-      padding: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer-cta h2 {
-      margin: 0 0 8px;
-      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
-    }
-
-    .footer-cta p {
-      margin: 0;
-      color: rgba(255,255,255,0.9);
-      max-width: 60ch;
-      line-height: 1.6;
-    }
-
-    footer {
-      padding: 0 0 32px;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      gap: 18px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(23,38,27,0.08);
-    }
-
-    .footer-grid h4 {
-      margin: 0 0 10px;
-      color: var(--text);
-    }
-
-    .footer-grid ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 8px;
-    }
-
-    .small {
-      margin-top: 18px;
-      font-size: 0.86rem;
-    }
-
-    .note {
-      margin-top: 12px;
-      color: #647a69;
-      line-height: 1.6;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 1100px) {
+    @media (max-width:1100px){
       .hero-grid,
-      .troubleshoot {
-        grid-template-columns: 1fr;
+      .troubleshoot{
+        grid-template-columns:1fr;
       }
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width:1024px){
       .grid-3,
       .steps,
       .footer-grid,
-      .modem-tabs {
-        grid-template-columns: repeat(2, minmax(0,1fr));
+      .modem-tabs{
+        grid-template-columns:repeat(2,minmax(0,1fr));
       }
     }
 
-    @media (max-width: 720px) {
-      .nav {
-        flex-wrap: wrap;
-        padding: 14px 0;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
+    @media (max-width:720px){
+      .nav{flex-wrap:wrap;padding:14px 0}
+      .nav-links{display:none}
       .stats,
       .grid-3,
       .steps,
@@ -779,27 +702,19 @@
       .quick-links,
       .footer-grid,
       .status-row,
-      .modem-tabs {
-        grid-template-columns: 1fr;
+      .modem-tabs{
+        grid-template-columns:1fr;
       }
-
-      .hero {
-        padding-top: 14px;
-      }
-
-      h1 { line-height: 1; }
-
+      .hero{padding-top:14px}
+      h1{line-height:1}
       .support-inner,
       .promo-panel .content,
       .card-pad,
       .topic-list,
-      .footer-cta .wrap {
-        padding: 18px;
+      .footer-cta .wrap{
+        padding:18px;
       }
-
-      .searchbar {
-        grid-template-columns: 1fr;
-      }
+      .searchbar{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -815,7 +730,7 @@
     <div class="container nav">
       <a class="brand" href="#home" aria-label="eir help and support">
         <div class="logo-box">
-          <img src="logo.png" alt="eir logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-weight:900;color:#5cb85c;letter-spacing:.04em;text-transform:lowercase&quot;>eir</span>'" />
+          <img src="logo.png" alt="eir logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-weight:900;color:#66bb6a;letter-spacing:.04em;text-transform:lowercase&quot;>eir</span>'" />
         </div>
         <div class="brand-text">
           <span class="name">eir</span>
@@ -849,8 +764,8 @@
           <div class="eyebrow">Broadband or WiFi issues</div>
           <h1>Get help with your eir fibre broadband.</h1>
           <p class="lead">
-            Find fast support for modem setup, WiFi problems, broadband speed, and common connectivity issues.
-            The page is structured to echo eir’s support journey and keep the experience focused on self-service first.
+            Find answers for broadband setup, WiFi problems, modem troubleshooting, speed issues and connection support.
+            This layout follows the support journey of the real eir broadband help area while keeping the page original.
           </p>
 
           <div class="hero-actions">
@@ -869,7 +784,7 @@
             </div>
             <div class="stat">
               <strong>Speed</strong>
-              <span>test and optimisation</span>
+              <span>testing and optimisation</span>
             </div>
           </div>
         </div>
@@ -880,7 +795,7 @@
               <div class="promo-badge">Get help with our support tool</div>
               <div class="signal">
                 <strong>Start here</strong>
-                <span>Use the support flows below for setup, WiFi, speed, and modem-specific help.</span>
+                <span>Use the support flows below for setup, WiFi, speed and modem-specific help.</span>
               </div>
             </div>
             <div class="router"></div>
@@ -931,12 +846,12 @@
             <div class="support-head">
               <div>
                 <h2>I want help with...</h2>
-                <p>Use these options to move into modem setup, WiFi help, speed support, or contact information.</p>
+                <p>Choose the support path that best fits your issue: installation, WiFi, speed, modem or contact options.</p>
               </div>
               <div class="pill">Troubleshooting</div>
             </div>
 
-            <form class="searchbar" onsubmit="event.preventDefault(); alert('Search submitted. Connect this to your own flow if needed.');">
+            <form class="searchbar" onsubmit="event.preventDefault(); alert('Search submitted.');">
               <input type="text" placeholder="Search broadband, WiFi, modem, speed or setup" aria-label="Search broadband help" />
               <button class="cta cta-primary" type="submit">Search</button>
             </form>
@@ -947,16 +862,16 @@
                 <span>eir fibre box 7, F3500, F3000 and F2000.</span>
               </a>
               <a class="quick-link" href="#wifi">
-                <strong>WiFi issues</strong>
-                <span>Restore settings, reconnect devices and optimise WiFi.</span>
+                <strong>If you are having WiFi issues</strong>
+                <span>Optimise coverage, reconnect devices and restore settings.</span>
               </a>
               <a class="quick-link" href="#speed">
-                <strong>Speed support</strong>
-                <span>Improve performance and check your connection.</span>
+                <strong>Frequently viewed tutorials</strong>
+                <span>Use practical steps for speed and connection support.</span>
               </a>
               <a class="quick-link" href="#faq">
                 <strong>Contact us</strong>
-                <span>Find the support path that fits your problem.</span>
+                <span>Move to the right support path if you still need help.</span>
               </a>
             </div>
           </div>
@@ -969,7 +884,7 @@
         <div class="section-head">
           <div>
             <h2>Choose your modem</h2>
-            <p>Click below to get help with set-up, WiFi and broadband speed support for the different eir fibre boxes.</p>
+            <p>Click below to get help with set-up, WiFi and broadband speed support for our main fibre modems.</p>
           </div>
         </div>
 
@@ -987,20 +902,19 @@
         <div class="section-head">
           <div>
             <h2>WiFi help</h2>
-            <p>Use these support blocks to mirror the real page’s practical guidance and troubleshooting style.</p>
+            <p>Support for WiFi setup, general troubleshooting, use, installation and connection.</p>
           </div>
         </div>
 
         <div class="troubleshoot">
           <article class="card">
             <div class="promo-panel" style="border-radius:24px; min-height:100%;">
-              <div class="content" style="position:relative; min-height:100%;">
+              <div class="content" style="min-height:100%;">
                 <div class="promo-badge">If you are having WiFi issues</div>
                 <div style="margin-top:auto; max-width:40ch;">
-                  <h3 style="margin:0 0 8px; font-size:1.45rem; letter-spacing:-0.03em;">Restart, reconnect, and optimise</h3>
+                  <h3 style="margin:0 0 8px; font-size:1.45rem; letter-spacing:-.03em;">Improve your connection at home</h3>
                   <p style="margin:0; color:var(--muted); line-height:1.6;">
-                    Hold down the WiFi button if needed, forget the network on the device, and reconnect from the beginning.
-                    Place the modem in a better location to improve coverage.
+                    Restart the modem, reconnect your device, and place the hub in a more central position to improve coverage.
                   </p>
                 </div>
               </div>
@@ -1011,28 +925,28 @@
             <div class="topic-item">
               <div>
                 <strong>Where can I find my WiFi password?</strong>
-                <span>Check the label on the modem or your account details.</span>
+                <span>Check the label on your modem or account details.</span>
               </div>
               <div class="arrow">→</div>
             </div>
             <div class="topic-item">
               <div>
                 <strong>Optimising WiFi location</strong>
-                <span>Move the hub to a central open position.</span>
+                <span>Move the modem to a central open position.</span>
               </div>
               <div class="arrow">→</div>
             </div>
             <div class="topic-item">
               <div>
                 <strong>WiFi frequency</strong>
-                <span>Understand band behaviour and device performance.</span>
+                <span>Understand band behaviour and how it affects devices.</span>
               </div>
               <div class="arrow">→</div>
             </div>
             <div class="topic-item">
               <div>
                 <strong>Connecting devices</strong>
-                <span>Reconnect phones, laptops and smart home devices.</span>
+                <span>Reconnect phones, laptops and smart devices.</span>
               </div>
               <div class="arrow">→</div>
             </div>
@@ -1046,7 +960,7 @@
         <div class="section-head">
           <div>
             <h2>Speed support</h2>
-            <p>Helpful steps for broadband speed issues, including a simple reference flow for performance checks.</p>
+            <p>Helpful steps for broadband speed issues and connection improvement.</p>
           </div>
         </div>
 
@@ -1054,19 +968,19 @@
           <article class="card card-pad">
             <div class="icon">1</div>
             <h3>Run a speed test</h3>
-            <p>Check the connection from a device close to the router to separate WiFi issues from line issues.</p>
+            <p>Check performance from a device close to the modem to separate WiFi issues from line issues.</p>
           </article>
 
           <article class="card card-pad">
             <div class="icon">2</div>
             <h3>Restart the modem</h3>
-            <p>Power cycling the modem can clear temporary faults and restore normal performance.</p>
+            <p>A full restart can clear temporary faults and restore connectivity.</p>
           </article>
 
           <article class="card card-pad">
             <div class="icon">3</div>
             <h3>Check placement</h3>
-            <p>Move the modem away from thick walls and interference to improve coverage and throughput.</p>
+            <p>Move the modem away from thick walls and interference for better coverage.</p>
           </article>
         </div>
       </div>
@@ -1076,8 +990,8 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Setup and installation</h2>
-            <p>Support for broadband installation, self-install, and basic first-time setup guidance.</p>
+            <h2>Installation and tutorials</h2>
+            <p>Use this area for the kind of step-by-step help and featured tutorials that appear on the support page.</p>
           </div>
         </div>
 
@@ -1090,7 +1004,7 @@
           <article class="card step">
             <div class="num">2</div>
             <h3>Connect the line</h3>
-            <p>Ensure the fibre/line cable is connected to the correct port.</p>
+            <p>Ensure the fibre or line cable is connected to the correct port.</p>
           </article>
           <article class="card step">
             <div class="num">3</div>
@@ -1110,27 +1024,27 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Frequently asked questions</h2>
-            <p>Short support-style answers that make the page feel closer to the real eir help flow.</p>
+            <h2>Frequently read articles</h2>
+            <p>These summary cards mimic the “support articles / tutorials” feel from the original page.</p>
           </div>
         </div>
 
         <div class="faq">
           <div class="faq-item">
-            <strong>What do the lights mean?</strong>
-            <p>Check the modem lights to see whether power, line and WiFi are all working as expected.</p>
+            <strong>What do the modem lights mean?</strong>
+            <p>Use the lights to see whether power, line and WiFi are all working as expected.</p>
           </div>
           <div class="faq-item">
             <strong>How do I reset WiFi settings?</strong>
-            <p>Use the modem reset procedure to restore the default network name and password.</p>
+            <p>Follow the modem reset procedure to restore the default network name and password.</p>
           </div>
           <div class="faq-item">
             <strong>Why is my broadband slow?</strong>
-            <p>Test near the modem, restart it, and check for coverage or interference issues.</p>
+            <p>Test near the modem, restart it, and check for WiFi coverage or interference issues.</p>
           </div>
           <div class="faq-item">
             <strong>Can I contact support here?</strong>
-            <p>Yes. The Genesys Messenger widget remains in the bottom-right corner for support conversations.</p>
+            <p>Yes. The Genesys Messenger widget remains available in the bottom-right corner for support conversations.</p>
           </div>
         </div>
       </div>
@@ -1139,7 +1053,7 @@
     <section class="footer-cta">
       <div class="container wrap">
         <div>
-          <h2>Need help with your broadband?</h2>
+          <h2>Still need help with your broadband?</h2>
           <p>Open the Genesys widget to test live support, messaging, or a guided troubleshooting flow.</p>
         </div>
         <a class="cta cta-primary" href="#home">Back to top</a>
@@ -1151,7 +1065,7 @@
     <div class="container footer-grid">
       <div>
         <h4>eir</h4>
-        <p>Demo support page for fibre broadband help, designed to resemble a telecom help centre layout.</p>
+        <p>Demo support page for fibre broadband help, inspired by the support structure of the original page.</p>
         <p class="note">Tip: replace <strong>logo.png</strong> with your own logo file if needed.</p>
       </div>
       <div>
