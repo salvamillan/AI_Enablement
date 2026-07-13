@@ -1,1097 +1,664 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eir | Fibre Broadband Help & Support</title>
-  <meta name="description" content="eir Fibre Broadband Help & Support with troubleshooting, modem guides, WiFi help, speed tips and Genesys Messenger." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Help | eir Broadband</title>
+  <meta name="description" content="Get support on WiFi set up, general troubleshooting steps, usage, installation, connection, our modem and much more">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f6f8f3;
-      --surface:#ffffff;
-      --surface-soft:#f9fbf7;
-      --text:#162219;
-      --muted:#5f6d62;
-      --line:rgba(22,34,25,.1);
-      --brand:#66bb6a;
-      --brand-dark:#2f7d32;
-      --brand-soft:#e8f5e9;
-      --shadow:0 14px 36px rgba(22,34,25,.09);
-      --radius:24px;
-      --radius-sm:16px;
-      --max:1180px;
+    :root {
+      --eir-purple: #493553;
+      --eir-purple-dark: #332539;
+      --eir-cream: #F5EBDA;
+      --eir-pink: #d111c9;
+      --eir-bg: #f8f8f8;
+      --eir-white: #ffffff;
+      --eir-text: #333333;
+      --eir-muted: #666666;
+      --eir-radius: 12px;
+      --eir-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --max-width: 1200px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(102,187,106,.11), transparent 26%),
-        linear-gradient(180deg,#fff 0%,var(--bg) 100%);
-      min-height:100vh;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--eir-text);
+      background: var(--eir-bg);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; cursor: pointer; }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
     }
 
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    button,input,select{font:inherit}
+    /* Top bar */
+    .topbar {
+      background: var(--eir-purple);
+      color: var(--eir-cream);
+      font-size: 0.85rem;
+      padding: 8px 0;
+    }
+    .topbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .topbar a { color: var(--eir-cream); text-decoration: underline; }
 
-    .container{
-      width:min(100% - 32px,var(--max));
-      margin:0 auto;
+    /* Header / Nav */
+    .header {
+      background: var(--eir-white);
+      border-bottom: 1px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+      gap: 16px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--eir-purple);
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover { color: var(--eir-pink); }
+    .nav-cta {
+      background: var(--eir-purple);
+      color: var(--eir-cream);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--eir-purple-dark); }
 
-    .topbar{
-      background:linear-gradient(90deg,#10331a,#2b6f31 55%,#66bb6a);
-      color:#fff;
-      font-size:.92rem;
-      padding:10px 0;
+    /* Breadcrumbs */
+    .breadcrumbs {
+      padding: 16px 0;
+      font-size: 0.9rem;
+      color: var(--eir-muted);
     }
-    .topbar .container{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-    .topbar strong{color:#f8ffd9}
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:30;
-      background:rgba(255,255,255,.9);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(22,34,25,.08);
-    }
-
-    .nav{
-      min-height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
-
-    .logo-box{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      background:#fff;
-      border:1px solid rgba(22,34,25,.1);
-      box-shadow:0 10px 26px rgba(22,34,25,.08);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      flex:0 0 auto;
-    }
-    .logo-box img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .brand-text .name{
-      display:block;
-      font-weight:900;
-      line-height:1;
-      letter-spacing:.02em;
-      text-transform:lowercase;
-      font-size:1.1rem;
-    }
-    .brand-text .tag{
-      display:block;
-      color:var(--muted);
-      font-size:.9rem;
-      margin-top:4px;
+    .breadcrumbs span + span::before {
+      content: "â€º";
+      margin: 0 8px;
+      color: #aaa;
     }
 
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-      color:#26402b;
-      font-weight:700;
-      font-size:.96rem;
+    /* Hero / Banner */
+    .hero {
+      background: linear-gradient(135deg, var(--eir-purple) 0%, var(--eir-purple-dark) 100%);
+      color: var(--eir-cream);
+      padding: 60px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .nav-links a{opacity:.88}
-    .nav-links a:hover{opacity:1;color:var(--brand-dark)}
-
-    .cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      border:0;
-      border-radius:999px;
-      padding:13px 18px;
-      font-weight:800;
-      cursor:pointer;
-      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-      white-space:nowrap;
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(209, 17, 201, 0.1);
+      pointer-events: none;
     }
-    .cta:hover{transform:translateY(-1px)}
-    .cta-primary{
-      color:#fff;
-      background:linear-gradient(135deg,var(--brand-dark),var(--brand));
-      box-shadow:0 12px 24px rgba(47,125,50,.22);
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
     }
-    .cta-secondary{
-      color:var(--brand-dark);
-      background:#ecf8ec;
-      border:1px solid rgba(102,187,106,.15);
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 28px;
+      opacity: 0.9;
     }
-    .cta-ghost{
-      color:var(--text);
-      background:#fff;
-      border:1px solid var(--line);
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--eir-cream);
+      color: var(--eir-purple);
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
-    .breadcrumbs{
-      padding:18px 0 0;
-      color:#6a786e;
-      font-size:.93rem;
-    }
-    .breadcrumbs .container{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-    }
-    .crumb + .crumb::before{
-      content:"›";
-      color:#a0aba3;
-      margin-right:8px;
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
 
-    .hero{
-      padding:18px 0 14px;
+    /* Sections */
+    .section {
+      padding: 48px 0;
     }
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:24px;
-      align-items:stretch;
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
-
-    .hero-copy{padding:20px 0}
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(102,187,106,.12);
-      color:var(--brand-dark);
-      font-weight:800;
-      font-size:.92rem;
-      margin-bottom:16px;
+    .section-desc {
+      text-align: center;
+      color: var(--eir-muted);
+      max-width: 700px;
+      margin: 0 auto 32px;
     }
 
-    h1{
-      margin:0;
-      font-size:clamp(2.3rem,4.4vw,4.6rem);
-      line-height:.96;
-      letter-spacing:-.05em;
+    /* Choose your modem */
+    .modem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .modem-card {
+      background: var(--eir-white);
+      border-radius: var(--eir-radius);
+      box-shadow: var(--eir-shadow);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #eee;
+    }
+    .modem-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+    .modem-img {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #f9f5ff, #f0e8f5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modem-img .modem-icon {
+      width: 80px;
+      height: 100px;
+      background: linear-gradient(180deg, #ffffff, #f0e8f5);
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--eir-purple);
+      font-weight: 700;
+    }
+    .modem-card .modem-name {
+      padding: 16px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--eir-purple);
     }
 
-    .lead{
-      max-width:60ch;
-      color:var(--muted);
-      font-size:clamp(1rem,1.45vw,1.12rem);
-      line-height:1.65;
-      margin:16px 0 24px;
+    /* I want help with */
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .help-tile {
+      background: var(--eir-cream);
+      border-radius: var(--eir-radius);
+      padding: 24px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--eir-purple);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      border: 1px solid transparent;
+    }
+    .help-tile:hover {
+      background: var(--eir-purple-dark);
+      color: var(--eir-cream);
+      transform: translateY(-2px);
+    }
+    .help-tile .tile-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
 
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:24px;
+    /* FAQ / Articles */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .faq-col h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      text-align: center;
+      color: var(--eir-purple);
+    }
+    .faq-item {
+      background: var(--eir-white);
+      border: 1px solid #eee;
+      border-radius: var(--eir-radius);
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--eir-purple);
+      transition: background 0.15s, border-color 0.15s;
+      display: block;
+    }
+    .faq-item:hover {
+      background: #f9f5ff;
+      border-color: var(--eir-pink);
     }
 
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:14px;
+    /* Videos */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
-    .stat{
-      background:rgba(255,255,255,.86);
-      border:1px solid rgba(22,34,25,.08);
-      border-radius:20px;
-      padding:16px;
-      box-shadow:0 10px 28px rgba(22,34,25,.05);
+    .video-card {
+      background: var(--eir-white);
+      border-radius: var(--eir-radius);
+      box-shadow: var(--eir-shadow);
+      overflow: hidden;
+      border: 1px solid #eee;
+      transition: transform 0.2s;
     }
-    .stat strong{
-      display:block;
-      font-size:1.3rem;
-      margin-bottom:4px;
+    .video-card:hover { transform: translateY(-3px); }
+    .video-thumb {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, #e8dff5, #f5ebda);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .stat span{color:var(--muted);font-size:.92rem}
-
-    .support-card{
-      background:rgba(255,255,255,.94);
-      border:1px solid rgba(22,34,25,.08);
-      border-radius:30px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      position:relative;
+    .video-thumb .play-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--eir-purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .support-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at top right, rgba(102,187,106,.16), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(255,143,69,.12), transparent 24%);
-      pointer-events:none;
+    .play-icon::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 0 8px 14px;
+      border-color: transparent transparent transparent var(--eir-cream);
+      margin-left: 3px;
     }
-
-    .support-inner{
-      position:relative;
-      padding:22px;
-      display:grid;
-      gap:16px;
+    .video-card .video-info {
+      padding: 16px;
     }
-
-    .support-head{
-      display:flex;
-      align-items:start;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+    .video-card .video-info h4 {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
     }
-    .support-head h2{
-      margin:0;
-      font-size:1.35rem;
-      letter-spacing:-.03em;
-    }
-    .support-head p{
-      margin:6px 0 0;
-      color:var(--muted);
-      line-height:1.5;
-      font-size:.96rem;
+    .video-btn {
+      background: var(--eir-purple);
+      color: var(--eir-cream);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
     }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      background:rgba(102,187,106,.12);
-      color:var(--brand-dark);
-      font-weight:800;
-      font-size:.86rem;
-      white-space:nowrap;
+    /* Quick links bottom */
+    .quicklinks {
+      background: var(--eir-purple);
+      padding: 32px 0;
+    }
+    .quicklinks .container {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .ql-btn {
+      background: var(--eir-purple-dark);
+      color: var(--eir-cream);
+      padding: 14px 28px;
+      border-radius: var(--eir-radius);
+      font-weight: 700;
+      border: 1px solid rgba(245, 235, 218, 0.2);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .ql-btn:hover {
+      background: rgba(245, 235, 218, 0.15);
+      transform: translateY(-2px);
     }
 
-    .searchbar{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:10px;
+    /* Footer */
+    .footer {
+      background: var(--eir-white);
+      border-top: 1px solid #e0e0e0;
+      padding: 48px 0 32px;
     }
-    .searchbar input{
-      width:100%;
-      border:1px solid rgba(22,34,25,.14);
-      background:#fff;
-      border-radius:16px;
-      padding:14px 16px;
-      outline:none;
-      transition:border-color .15s ease, box-shadow .15s ease;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
     }
-    .searchbar input:focus{
-      border-color:rgba(102,187,106,.45);
-      box-shadow:0 0 0 4px rgba(102,187,106,.10);
+    .footer-grid h4 {
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--eir-purple);
     }
-
-    .quick-links{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
+    .footer-grid ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
     }
-    .quick-link{
-      padding:16px;
-      border-radius:18px;
-      background:var(--surface-soft);
-      border:1px solid rgba(22,34,25,.08);
-      transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    .footer-grid ul li a {
+      font-size: 0.85rem;
+      color: var(--eir-muted);
+      transition: color 0.15s;
     }
-    .quick-link:hover{
-      transform:translateY(-1px);
-      box-shadow:0 12px 22px rgba(22,34,25,.08);
-      border-color:rgba(102,187,106,.22);
+    .footer-grid ul li a:hover { color: var(--eir-pink); }
+    .footer-bottom {
+      border-top: 1px solid #e0e0e0;
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .quick-link strong{
-      display:block;
-      margin-bottom:4px;
-      font-size:.98rem;
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: var(--eir-muted);
     }
-    .quick-link span{
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.45;
-    }
-
-    .section{padding:18px 0 8px}
-    .section-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:16px;
-      margin:0 0 18px;
-      flex-wrap:wrap;
-    }
-    .section-head h2{
-      margin:0;
-      font-size:clamp(1.45rem,2.2vw,2rem);
-      letter-spacing:-.03em;
-    }
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      max-width:64ch;
-      line-height:1.6;
+    .footer-links a:hover { color: var(--eir-pink); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: #999;
+      text-align: center;
+      margin-top: 16px;
     }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .modem-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(3, 1fr); }
     }
-
-    .card{
-      background:var(--surface);
-      border:1px solid rgba(22,34,25,.08);
-      border-radius:var(--radius);
-      box-shadow:0 14px 32px rgba(22,34,25,.06);
-      overflow:hidden;
-    }
-    .card-pad{padding:22px}
-
-    .icon{
-      width:54px;
-      height:54px;
-      border-radius:18px;
-      display:grid;
-      place-items:center;
-      margin-bottom:16px;
-      background:linear-gradient(135deg, rgba(102,187,106,.14), rgba(255,143,69,.12));
-      color:var(--brand-dark);
-      font-size:1.35rem;
-      font-weight:900;
-    }
-
-    .card h3{
-      margin:0 0 8px;
-      font-size:1.12rem;
-    }
-    .card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .troubleshoot{
-      display:grid;
-      grid-template-columns:1.04fr .96fr;
-      gap:16px;
-    }
-
-    .topic-list{
-      display:grid;
-      gap:12px;
-      padding:18px;
-    }
-    .topic-item{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:14px 16px;
-      border-radius:18px;
-      background:#f7fbf7;
-      border:1px solid rgba(102,187,106,.10);
-    }
-    .topic-item strong{display:block;margin-bottom:4px}
-    .topic-item span{color:var(--muted);font-size:.92rem}
-    .topic-item .arrow{font-weight:900;color:var(--brand-dark)}
-
-    .hero-side{
-      display:grid;
-      gap:16px;
-      align-content:start;
-    }
-
-    .promo-panel{
-      min-height:320px;
-      position:relative;
-      overflow:hidden;
-      border-radius:30px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.92)),
-        linear-gradient(135deg, rgba(102,187,106,.28), rgba(255,143,69,.15)),
-        linear-gradient(180deg, #f7fff7, #eef6ee);
-      border:1px solid rgba(22,34,25,.08);
-      box-shadow:var(--shadow);
-    }
-    .promo-panel .content{
-      position:relative;
-      height:100%;
-      padding:22px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:18px;
-    }
-    .promo-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      width:fit-content;
-      padding:10px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,.84);
-      border:1px solid rgba(22,34,25,.08);
-      box-shadow:0 8px 22px rgba(22,34,25,.08);
-      font-weight:800;
-      color:#2b4230;
-    }
-    .signal{
-      display:grid;
-      gap:8px;
-      max-width:260px;
-      align-self:flex-end;
-      text-align:right;
-    }
-    .signal strong{
-      font-size:1.7rem;
-      letter-spacing:-.03em;
-    }
-    .signal span{
-      color:var(--muted);
-      line-height:1.5;
-    }
-    .mesh{
-      position:absolute;
-      inset:auto 0 0 0;
-      height:50%;
-      background:
-        radial-gradient(circle at 20% 45%, rgba(255,255,255,.55), transparent 16%),
-        radial-gradient(circle at 70% 32%, rgba(255,255,255,.42), transparent 18%),
-        linear-gradient(180deg, transparent, rgba(255,255,255,.95));
-      opacity:.9;
-    }
-    .router{
-      position:absolute;
-      left:16%;
-      top:40%;
-      width:68%;
-      height:88px;
-      border-radius:26px;
-      background:linear-gradient(135deg, #ffffff, #e9f5e9);
-      box-shadow:0 18px 30px rgba(22,34,25,.12);
-      border:1px solid rgba(22,34,25,.07);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transform:rotate(-5deg);
-    }
-    .router::before{
-      content:"WiFi";
-      font-weight:900;
-      letter-spacing:.12em;
-      color:var(--brand-dark);
-      text-transform:uppercase;
-      font-size:1rem;
-    }
-    .leds{
-      position:absolute;
-      left:33%;
-      top:57%;
-      width:34%;
-      height:8px;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:8px;
-      transform:rotate(-5deg);
-    }
-    .leds span{
-      height:8px;
-      border-radius:999px;
-      background:rgba(102,187,106,.45);
-    }
-
-    .status-card{
-      padding:18px;
-      display:grid;
-      gap:12px;
-    }
-    .status-row{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:10px;
-    }
-    .status-box{
-      padding:12px;
-      border-radius:16px;
-      background:#f7fbf7;
-      border:1px solid rgba(102,187,106,.10);
-      text-align:center;
-    }
-    .status-box strong{
-      display:block;
-      font-size:1rem;
-    }
-    .status-box span{
-      color:var(--muted);
-      font-size:.86rem;
-    }
-
-    .modem-tabs{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:12px;
-    }
-    .tab{
-      padding:14px 16px;
-      border-radius:18px;
-      background:#f7fbf7;
-      border:1px solid rgba(102,187,106,.10);
-      font-weight:800;
-      color:#244029;
-      text-align:center;
-    }
-
-    .steps{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:16px;
-    }
-    .step{padding:18px}
-    .step .num{
-      width:38px;
-      height:38px;
-      border-radius:999px;
-      display:grid;
-      place-items:center;
-      background:rgba(102,187,106,.14);
-      color:var(--brand-dark);
-      font-weight:900;
-      margin-bottom:14px;
-    }
-
-    .faq{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-    }
-    .faq-item{
-      padding:18px 20px;
-      background:var(--surface);
-      border-radius:20px;
-      border:1px solid rgba(22,34,25,.08);
-      box-shadow:0 12px 28px rgba(22,34,25,.05);
-    }
-    .faq-item strong{
-      display:block;
-      margin-bottom:8px;
-      font-size:1rem;
-    }
-    .faq-item p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .footer-cta{
-      margin:28px 0 40px;
-      background:linear-gradient(135deg,#123019,#2d6f32 60%,#5cb85c);
-      color:#fff;
-      border-radius:30px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-    .footer-cta .wrap{
-      padding:28px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    .footer-cta h2{
-      margin:0 0 8px;
-      font-size:clamp(1.5rem,2.6vw,2.2rem);
-    }
-    .footer-cta p{
-      margin:0;
-      color:rgba(255,255,255,.9);
-      max-width:60ch;
-      line-height:1.6;
-    }
-
-    footer{
-      padding:0 0 32px;
-      color:var(--muted);
-      font-size:.93rem;
-    }
-    .footer-grid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr .8fr;
-      gap:18px;
-      padding-top:20px;
-      border-top:1px solid rgba(22,34,25,.08);
-    }
-    .footer-grid h4{
-      margin:0 0 10px;
-      color:var(--text);
-    }
-    .footer-grid ul{
-      margin:0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:8px;
-    }
-    .small{
-      margin-top:18px;
-      font-size:.86rem;
-    }
-    .note{
-      margin-top:12px;
-      color:#647a69;
-      line-height:1.6;
-      font-size:.9rem;
-    }
-
-    @media (max-width:1100px){
-      .hero-grid,
-      .troubleshoot{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width:1024px){
-      .grid-3,
-      .steps,
-      .footer-grid,
-      .modem-tabs{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-    }
-
-    @media (max-width:720px){
-      .nav{flex-wrap:wrap;padding:14px 0}
-      .nav-links{display:none}
-      .stats,
-      .grid-3,
-      .steps,
-      .faq,
-      .quick-links,
-      .footer-grid,
-      .status-row,
-      .modem-tabs{
-        grid-template-columns:1fr;
-      }
-      .hero{padding-top:14px}
-      h1{line-height:1}
-      .support-inner,
-      .promo-panel .content,
-      .card-pad,
-      .topic-list,
-      .footer-cta .wrap{
-        padding:18px;
-      }
-      .searchbar{grid-template-columns:1fr}
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .modem-grid { grid-template-columns: 1fr; }
+      .help-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
+
+  <!-- Top bar -->
   <div class="topbar">
     <div class="container">
-      <div>Need help with fibre broadband? <strong>Start troubleshooting now</strong>.</div>
-      <div>24/7 digital support with Genesys Messenger</div>
+      <span>Need help? <a href="#support">Start troubleshooting now</a></span>
+      <span>24/7 digital support available</span>
     </div>
   </div>
 
-  <header>
+  <!-- Header -->
+  <header class="header">
     <div class="container nav">
-      <a class="brand" href="#home" aria-label="eir help and support">
-        <div class="logo-box">
-          <img src="logo.png" alt="eir logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-weight:900;color:#66bb6a;letter-spacing:.04em;text-transform:lowercase&quot;>eir</span>'" />
-        </div>
-        <div class="brand-text">
-          <span class="name">eir</span>
-          <span class="tag">Help & Support</span>
-        </div>
-      </a>
-
+      <a href="#" class="logo">eir</a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#support">Broadband</a>
-        <a href="#modems">Modems</a>
-        <a href="#wifi">WiFi</a>
-        <a href="#speed">Speed</a>
+        <a href="#modems">Broadband &amp; TV</a>
+        <a href="#help">Mobile</a>
+        <a href="#help">Phones</a>
+        <a href="#support">Need help?</a>
       </nav>
-
-      <a class="cta cta-secondary" href="#support">Get help</a>
+      <a href="#support" class="nav-cta">Get help</a>
     </div>
   </header>
 
-  <main id="home">
-    <section class="breadcrumbs">
-      <div class="container">
-        <span class="crumb">Home</span>
-        <span class="crumb">Support</span>
-        <span class="crumb">Broadband</span>
-      </div>
-    </section>
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <span>Home</span>
+      <span>Support</span>
+      <span>Broadband</span>
+    </div>
+  </div>
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Broadband or WiFi issues</div>
-          <h1>Get help with your eir fibre broadband.</h1>
-          <p class="lead">
-            Find answers for broadband setup, WiFi problems, modem troubleshooting, speed issues and connection support.
-            This layout follows the support journey of the real eir broadband help area while keeping the page original.
-          </p>
+  <!-- Hero -->
+  <section class="hero" id="support">
+    <div class="container">
+      <h1>Broadband or WiFi issues</h1>
+      <p>Get help with our new support tool. WiFi set up, troubleshooting, installation, connection, modem guidance and more.</p>
+      <a href="https://eir.ie/troubleshooting" class="hero-cta">Start troubleshooting now</a>
+    </div>
+  </section>
 
-          <div class="hero-actions">
-            <a class="cta cta-primary" href="#support">Start troubleshooting</a>
-            <a class="cta cta-ghost" href="#modems">Choose your modem</a>
+  <!-- Choose your modem -->
+  <section class="section" id="modems">
+    <div class="container">
+      <h2 class="section-title">Choose your modem</h2>
+      <p class="section-desc">Click below to get help with set-up, WiFi and broadband speed support for our eir Fibre box 7, eir fibre box F3500, eir fibre box F3000 and F2000 modems.</p>
+      <div class="modem-grid">
+        <a href="/helpandsupport/fibre-broadband/eir-fibre-box-7/" class="modem-card">
+          <div class="modem-img">
+            <div class="modem-icon">Fibre 7</div>
           </div>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>Broadband</strong>
-              <span>line and connection help</span>
-            </div>
-            <div class="stat">
-              <strong>WiFi</strong>
-              <span>coverage and devices</span>
-            </div>
-            <div class="stat">
-              <strong>Speed</strong>
-              <span>testing and optimisation</span>
-            </div>
+          <div class="modem-name">eir fibre box 7</div>
+        </a>
+        <a href="/helpandsupport/fibre-broadband/eir-fibre-box-f3500/" class="modem-card">
+          <div class="modem-img">
+            <div class="modem-icon">F3500</div>
           </div>
-        </div>
-
-        <aside class="hero-side" aria-label="Support summary">
-          <div class="promo-panel">
-            <div class="content">
-              <div class="promo-badge">Get help with our support tool</div>
-              <div class="signal">
-                <strong>Start here</strong>
-                <span>Use the support flows below for setup, WiFi, speed and modem-specific help.</span>
-              </div>
-            </div>
-            <div class="router"></div>
-            <div class="leds">
-              <span></span><span></span><span></span><span></span>
-            </div>
-            <div class="mesh"></div>
+          <div class="modem-name">eir fibre box F3500</div>
+        </a>
+        <a href="/helpandsupport/fibre-broadband/eir-fibre-box/" class="modem-card">
+          <div class="modem-img">
+            <div class="modem-icon">F3000</div>
           </div>
-
-          <div class="card status-card">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-              <div>
-                <strong style="display:block; font-size:1rem;">I want help with...</strong>
-                <span style="color:var(--muted); font-size:.93rem;">Modem, WiFi, speed and contact options</span>
-              </div>
-              <span class="pill">Available now</span>
-            </div>
-            <div class="status-row">
-              <div class="status-box">
-                <strong>Modem</strong>
-                <span>setup</span>
-              </div>
-              <div class="status-box">
-                <strong>WiFi</strong>
-                <span>issues</span>
-              </div>
-              <div class="status-box">
-                <strong>Speed</strong>
-                <span>support</span>
-              </div>
-            </div>
+          <div class="modem-name">eir fibre box F3000</div>
+        </a>
+        <a href="/helpandsupport/fibre-broadband/f2000/" class="modem-card">
+          <div class="modem-img">
+            <div class="modem-icon">F2000</div>
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="support">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Broadband or WiFi issues</h2>
-            <p>Get help with our new support tool. Start troubleshooting now.</p>
-          </div>
-        </div>
-
-        <div class="card support-card">
-          <div class="support-inner">
-            <div class="support-head">
-              <div>
-                <h2>I want help with...</h2>
-                <p>Choose the support path that best fits your issue: installation, WiFi, speed, modem or contact options.</p>
-              </div>
-              <div class="pill">Troubleshooting</div>
-            </div>
-
-            <form class="searchbar" onsubmit="event.preventDefault(); alert('Search submitted.');">
-              <input type="text" placeholder="Search broadband, WiFi, modem, speed or setup" aria-label="Search broadband help" />
-              <button class="cta cta-primary" type="submit">Search</button>
-            </form>
-
-            <div class="quick-links">
-              <a class="quick-link" href="#modems">
-                <strong>Choose your modem</strong>
-                <span>eir fibre box 7, F3500, F3000 and F2000.</span>
-              </a>
-              <a class="quick-link" href="#wifi">
-                <strong>If you are having WiFi issues</strong>
-                <span>Optimise coverage, reconnect devices and restore settings.</span>
-              </a>
-              <a class="quick-link" href="#speed">
-                <strong>Frequently viewed tutorials</strong>
-                <span>Use practical steps for speed and connection support.</span>
-              </a>
-              <a class="quick-link" href="#faq">
-                <strong>Contact us</strong>
-                <span>Move to the right support path if you still need help.</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="modems">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Choose your modem</h2>
-            <p>Click below to get help with set-up, WiFi and broadband speed support for our main fibre modems.</p>
-          </div>
-        </div>
-
-        <div class="modem-tabs">
-          <div class="tab">eir fibre box 7</div>
-          <div class="tab">eir fibre box F3500</div>
-          <div class="tab">eir fibre box F3000</div>
-          <div class="tab">F2000</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="wifi">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>WiFi help</h2>
-            <p>Support for WiFi setup, general troubleshooting, use, installation and connection.</p>
-          </div>
-        </div>
-
-        <div class="troubleshoot">
-          <article class="card">
-            <div class="promo-panel" style="border-radius:24px; min-height:100%;">
-              <div class="content" style="min-height:100%;">
-                <div class="promo-badge">If you are having WiFi issues</div>
-                <div style="margin-top:auto; max-width:40ch;">
-                  <h3 style="margin:0 0 8px; font-size:1.45rem; letter-spacing:-.03em;">Improve your connection at home</h3>
-                  <p style="margin:0; color:var(--muted); line-height:1.6;">
-                    Restart the modem, reconnect your device, and place the hub in a more central position to improve coverage.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="card topic-list">
-            <div class="topic-item">
-              <div>
-                <strong>Where can I find my WiFi password?</strong>
-                <span>Check the label on your modem or account details.</span>
-              </div>
-              <div class="arrow">→</div>
-            </div>
-            <div class="topic-item">
-              <div>
-                <strong>Optimising WiFi location</strong>
-                <span>Move the modem to a central open position.</span>
-              </div>
-              <div class="arrow">→</div>
-            </div>
-            <div class="topic-item">
-              <div>
-                <strong>WiFi frequency</strong>
-                <span>Understand band behaviour and how it affects devices.</span>
-              </div>
-              <div class="arrow">→</div>
-            </div>
-            <div class="topic-item">
-              <div>
-                <strong>Connecting devices</strong>
-                <span>Reconnect phones, laptops and smart devices.</span>
-              </div>
-              <div class="arrow">→</div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="speed">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Speed support</h2>
-            <p>Helpful steps for broadband speed issues and connection improvement.</p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card card-pad">
-            <div class="icon">1</div>
-            <h3>Run a speed test</h3>
-            <p>Check performance from a device close to the modem to separate WiFi issues from line issues.</p>
-          </article>
-
-          <article class="card card-pad">
-            <div class="icon">2</div>
-            <h3>Restart the modem</h3>
-            <p>A full restart can clear temporary faults and restore connectivity.</p>
-          </article>
-
-          <article class="card card-pad">
-            <div class="icon">3</div>
-            <h3>Check placement</h3>
-            <p>Move the modem away from thick walls and interference for better coverage.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="setup">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Installation and tutorials</h2>
-            <p>Use this area for the kind of step-by-step help and featured tutorials that appear on the support page.</p>
-          </div>
-        </div>
-
-        <div class="steps">
-          <article class="card step">
-            <div class="num">1</div>
-            <h3>Connect power</h3>
-            <p>Plug in the modem and wait for the lights to stabilise.</p>
-          </article>
-          <article class="card step">
-            <div class="num">2</div>
-            <h3>Connect the line</h3>
-            <p>Ensure the fibre or line cable is connected to the correct port.</p>
-          </article>
-          <article class="card step">
-            <div class="num">3</div>
-            <h3>Join the WiFi</h3>
-            <p>Use the network name and password printed on the modem label.</p>
-          </article>
-          <article class="card step">
-            <div class="num">4</div>
-            <h3>Confirm service</h3>
-            <p>Test browsing and speed once the connection is fully up.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Frequently read articles</h2>
-            <p>These summary cards mimic the “support articles / tutorials” feel from the original page.</p>
-          </div>
-        </div>
-
-        <div class="faq">
-          <div class="faq-item">
-            <strong>What do the modem lights mean?</strong>
-            <p>Use the lights to see whether power, line and WiFi are all working as expected.</p>
-          </div>
-          <div class="faq-item">
-            <strong>How do I reset WiFi settings?</strong>
-            <p>Follow the modem reset procedure to restore the default network name and password.</p>
-          </div>
-          <div class="faq-item">
-            <strong>Why is my broadband slow?</strong>
-            <p>Test near the modem, restart it, and check for WiFi coverage or interference issues.</p>
-          </div>
-          <div class="faq-item">
-            <strong>Can I contact support here?</strong>
-            <p>Yes. The Genesys Messenger widget remains available in the bottom-right corner for support conversations.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="footer-cta">
-      <div class="container wrap">
-        <div>
-          <h2>Still need help with your broadband?</h2>
-          <p>Open the Genesys widget to test live support, messaging, or a guided troubleshooting flow.</p>
-        </div>
-        <a class="cta cta-primary" href="#home">Back to top</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <h4>eir</h4>
-        <p>Demo support page for fibre broadband help, inspired by the support structure of the original page.</p>
-        <p class="note">Tip: replace <strong>logo.png</strong> with your own logo file if needed.</p>
-      </div>
-      <div>
-        <h4>Support topics</h4>
-        <ul>
-          <li>Broadband or WiFi issues</li>
-          <li>Choose your modem</li>
-          <li>Speed support</li>
-          <li>Installation help</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li>24/7 digital support</li>
-          <li>Help centre</li>
-          <li>Outage information</li>
-          <li>Self-service articles</li>
-        </ul>
+          <div class="modem-name">F2000</div>
+        </a>
       </div>
     </div>
-    <div class="container small">
-      © 2026 eir. Test page for internal deployment and support flow validation.
+  </section>
+
+  <!-- I want help with -->
+  <section class="section" id="help" style="background: var(--eir-white);">
+    <div class="container">
+      <h2 class="section-title">I want help with...</h2>
+      <p class="section-desc">Choose the support path that best fits your issue.</p>
+      <div class="help-grid">
+        <a href="/helpandsupport/fibre-broadband/broadband-installation/" class="help-tile">
+          <div class="tile-icon">ðŸ“¦</div>
+          Broadband installation
+        </a>
+        <a href="/helpandsupport/fibre-broadband/returns-and-cancellations/" class="help-tile">
+          <div class="tile-icon">â†©ï¸</div>
+          Cancellations and returns
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Frequently read articles -->
+  <section class="section" id="articles">
+    <div class="container">
+      <div class="faq-grid">
+        <div class="faq-col">
+          <h3>Frequently read articles</h3>
+          <a href="https://www.eir.ie/helpandsupport/broadband/eir-fibre-box/wifi/wifi-issues/" class="faq-item">
+            If you are having WiFi issues
+          </a>
+          <a href="https://www.eir.ie/helpandsupport/broadband/eir-fibre-box/modem/" class="faq-item">
+            Installing your modem
+          </a>
+        </div>
+        <div class="faq-col">
+          <h3>Frequently viewed tutorials</h3>
+          <a href="https://www.youtube.com/watch?v=E2mOBSTkdBQ" class="faq-item" target="_blank">
+            â–¶ Top Tip: Create Some Space
+          </a>
+          <a href="https://www.youtube.com/watch?v=CZbQYWMc6OQ" class="faq-item" target="_blank">
+            â–¶ Top Tip: Check All Devices
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top videos -->
+  <section class="section" id="videos" style="background: var(--eir-white);">
+    <div class="container">
+      <h2 class="section-title">Top videos</h2>
+      <p class="section-desc">&nbsp;</p>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="play-icon"></div>
+          </div>
+          <div class="video-info">
+            <h4>Getting ready for eir Gigabit Fibre</h4>
+            <a href="https://youtu.be/kvGnoUVdFN8" target="_blank"><button class="video-btn">Watch video</button></a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="play-icon"></div>
+          </div>
+          <div class="video-info">
+            <h4>Connection: Wired vs WiFi</h4>
+            <a href="https://youtu.be/_TpUbJIosrs" target="_blank"><button class="video-btn">Watch video</button></a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="play-icon"></div>
+          </div>
+          <div class="video-info">
+            <h4>Optimise your WiFi</h4>
+            <a href="https://youtu.be/KA7yV7Bbyvc" target="_blank"><button class="video-btn">Watch video</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick links -->
+  <section class="quicklinks">
+    <div class="container">
+      <a href="https://www.eir.ie/about/contact/" class="ql-btn">Contact us</a>
+      <a href="/helpandsupport/" class="ql-btn">Support home</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Our Products</h4>
+          <ul>
+            <li><a href="https://www.eir.ie/shop/broadband/">Broadband</a></li>
+            <li><a href="/tv/">TV</a></li>
+            <li><a href="/mobile/">Mobile</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="https://www.eir.ie/helpandsupport/broadband/">Broadband support</a></li>
+            <li><a href="https://www.eir.ie/helpandsupport/eirtv/">eir TV support</a></li>
+            <li><a href="https://www.eir.ie/helpandsupport/mobile/">Mobile support</a></li>
+            <li><a href="https://www.eir.ie/helpandsupport/billing/">Billing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Our websites</h4>
+          <ul>
+            <li><a href="https://www.eir.ie/">eir at home</a></li>
+            <li><a href="https://eir.ie/business">eir Business</a></li>
+            <li><a href="http://www.openeir.ie/">Open eir</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>eir Group</h4>
+          <ul>
+            <li><a href="/about-us/">About us</a></li>
+            <li><a href="https://jobs.eir.care">Careers</a></li>
+            <li><a href="/pressroom/">News &amp; press</a></li>
+            <li><a href="/sustainability/">Sustainability</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="/about/contact/">Contact us</a></li>
+            <li><a href="/stores/">Find a store</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <a href="/termsandconditions/">Terms &amp; conditions</a>
+          <a href="/about/legal/">Legal</a>
+          <a href="/accessibility/">Accessibility</a>
+          <a href="/privacystatement/">Privacy</a>
+          <a href="/complaints/">Complaints</a>
+          <a href="https://www.eir.ie/cookies/">Cookies</a>
+        </div>
+      </div>
+      <p class="footer-copy">eir and open eir are trading names of eircom Limited. Â© 2026 eir. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- Genesys Web Messenger Widget -->
   <script type="text/javascript" charset="utf-8">
     (function (g, e, n, es, ys) {
       g['_genesysJs'] = e;
